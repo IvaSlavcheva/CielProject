@@ -9,26 +9,35 @@ namespace Ciel.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Order_Product>().HasKey(am => new
-            {
-                am.OrderId,
-                am.ProductId
-            });
+            base.OnModelCreating(modelBuilder);
+
+
+
+            modelBuilder.Entity<Catalog>()
+                .HasData(
+                    new Catalog("Околоочна зона") { Id=1 },
+                    new Catalog("Вежди и мигли") { Id=2 },
+                    new Catalog("Устни") { Id=3 },
+                    new Catalog("Цялостна грижа") { Id=4 }
+                );
         }
 
         public DbSet<Product> Products { get; set; }
 
         public DbSet<Catalog> Catalogs { get; set; }
+      
         public DbSet<Review> Reviews { get; set; }
+        
         public DbSet<Order> Orders { get; set; }
+        
         public DbSet<Order_Product> Order_Product { get; set; }
 
-        
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
     }
 }
