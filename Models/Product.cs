@@ -8,16 +8,15 @@ namespace Ciel.Models
         public Product() { }
 
 
-        public Product( string productName, string description, string picture, double price, Catalog catalog)
+        public Product(string productName, string description, string picture, double price, Catalog catalog)
         {
-            
+
             ProductName = productName;
             Description = description;
             Picture = picture;
             Price = price;
             Catalog = catalog;
-            //Reviews = new List<Review>();
-            //Orders = new List<Order_Product>();
+
         }
 
         [Key]

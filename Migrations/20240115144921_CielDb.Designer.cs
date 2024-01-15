@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ciel.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240111081146_InitialCielDB")]
-    partial class InitialCielDB
+    [Migration("20240115144921_CielDb")]
+    partial class CielDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,6 +40,28 @@ namespace Ciel.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Catalogs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CatalogName = "Околоочна зона"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CatalogName = "Вежди и мигли"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CatalogName = "Устни"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CatalogName = "Цялостна грижа"
+                        });
                 });
 
             modelBuilder.Entity("Ciel.Models.Order", b =>
@@ -56,10 +78,13 @@ namespace Ciel.Migrations
                     b.Property<DateTime>("Shipping")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Orders");
                 });
@@ -118,6 +143,35 @@ namespace Ciel.Migrations
                     b.HasIndex("CatalogId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CatalogId = 4,
+                            Description = "Хидратиращ и успокояващ крем",
+                            Picture = "1.jpg",
+                            Price = 19.899999999999999,
+                            ProductName = "Крем за лице"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CatalogId = 2,
+                            Description = "Удължава и хидратира миглите",
+                            Picture = "0.jpg",
+                            Price = 17.989999999999998,
+                            ProductName = "Серум за мигли"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CatalogId = 3,
+                            Description = "Облекчава сухите и напукани устни.",
+                            Picture = "3.jpg",
+                            Price = 21.989999999999998,
+                            ProductName = "Маска за устни"
+                        });
                 });
 
             modelBuilder.Entity("Ciel.Models.Review", b =>
@@ -368,6 +422,17 @@ namespace Ciel.Migrations
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
+            modelBuilder.Entity("Ciel.Models.Order", b =>
+                {
+                    b.HasOne("Ciel.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Ciel.Models.Order_Product", b =>
                 {
                     b.HasOne("Ciel.Models.Order", "Order")
@@ -390,7 +455,7 @@ namespace Ciel.Migrations
             modelBuilder.Entity("Ciel.Models.Product", b =>
                 {
                     b.HasOne("Ciel.Models.Catalog", "Catalog")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("CatalogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -456,11 +521,6 @@ namespace Ciel.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Ciel.Models.Catalog", b =>
-                {
-                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("Ciel.Models.Order", b =>

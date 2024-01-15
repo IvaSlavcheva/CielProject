@@ -140,6 +140,35 @@ namespace Ciel.Migrations
                     b.HasIndex("CatalogId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CatalogId = 4,
+                            Description = "Хидратиращ и успокояващ крем",
+                            Picture = "1.jpg",
+                            Price = 19.899999999999999,
+                            ProductName = "Крем за лице"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CatalogId = 2,
+                            Description = "Удължава и хидратира миглите",
+                            Picture = "0.jpg",
+                            Price = 17.989999999999998,
+                            ProductName = "Серум за мигли"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CatalogId = 3,
+                            Description = "Облекчава сухите и напукани устни.",
+                            Picture = "3.jpg",
+                            Price = 21.989999999999998,
+                            ProductName = "Маска за устни"
+                        });
                 });
 
             modelBuilder.Entity("Ciel.Models.Review", b =>
@@ -423,7 +452,7 @@ namespace Ciel.Migrations
             modelBuilder.Entity("Ciel.Models.Product", b =>
                 {
                     b.HasOne("Ciel.Models.Catalog", "Catalog")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("CatalogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -489,11 +518,6 @@ namespace Ciel.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Ciel.Models.Catalog", b =>
-                {
-                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("Ciel.Models.Order", b =>

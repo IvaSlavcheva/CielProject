@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Ciel.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCielDB : Migration
+    public partial class CielDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -65,21 +67,6 @@ namespace Ciel.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Catalogs", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<double>(type: "float", nullable: false),
-                    Shipping = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -189,6 +176,27 @@ namespace Ciel.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    Shipping = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -257,6 +265,27 @@ namespace Ciel.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Catalogs",
+                columns: new[] { "Id", "CatalogName" },
+                values: new object[,]
+                {
+                    { 1, "Околоочна зона" },
+                    { 2, "Вежди и мигли" },
+                    { 3, "Устни" },
+                    { 4, "Цялостна грижа" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "CatalogId", "Description", "Picture", "Price", "ProductName" },
+                values: new object[,]
+                {
+                    { 1, 4, "Хидратиращ и успокояващ крем", "1.jpg", 19.899999999999999, "Крем за лице" },
+                    { 2, 2, "Удължава и хидратира миглите", "0.jpg", 17.989999999999998, "Серум за мигли" },
+                    { 3, 3, "Облекчава сухите и напукани устни.", "3.jpg", 21.989999999999998, "Маска за устни" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -307,6 +336,11 @@ namespace Ciel.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Orders_UserId",
+                table: "Orders",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_CatalogId",
                 table: "Products",
                 column: "CatalogId");
@@ -345,13 +379,13 @@ namespace Ciel.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Catalogs");
