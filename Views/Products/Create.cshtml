@@ -1,4 +1,4 @@
-﻿@model Ciel.Models.Product
+﻿@model Ciel.Models.NewModelView.ProductImage
 
 @{
     ViewData["Title"] = "Create";
@@ -10,8 +10,11 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group text-center">
+                <img id="preview" style="max-width: 200px; max-height: 200px;" />
+            </div>
             <div class="form-group">
                 <label asp-for="ProductName" class="control-label"></label>
                 <input asp-for="ProductName" class="form-control" />
@@ -22,20 +25,19 @@
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Picture" class="control-label"></label>
-                <input asp-for="Picture" class="form-control" />
-                <span asp-validation-for="Picture" class="text-danger"></span>
+            <label asp-for="Picture" class="control-label"></label>
+            <div>
+                <input asp-for="Picture" id="customFile" accept="images/*" onchange="previewImage(event)" />
             </div>
+            <span asp-validation-for="Picture" class="text-danger"></span>
             <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Catalog.CatalogName" class="control-label"></label>
-                <input asp-for="Catalog.CatalogName" class="form-control" />
-                <span asp-validation-for="Catalog.CatalogName" class="text-danger"></span>
+                <label asp-for="CatalogId" class="control-label"></label>
+                <select asp-for="CatalogId" class ="form-control" asp-items="ViewBag.CatalogId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

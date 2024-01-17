@@ -7,22 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Ciel.Data;
 using Ciel.Models;
+using Ciel.Models.NewModelView;
+using System.Numerics;
 
 namespace Ciel.Controllers
 {
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public ProductsController(ApplicationDbContext context)
+        private readonly IWebHostEnvironment webHostEnvironment;
+        public ProductsController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            this.webHostEnvironment = webHostEnvironment;   
         }
 
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Products.ToListAsync());
+            var applicationDbContext = _context.Products.Include(p => p.Catalog);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Products/Details/5
@@ -34,6 +38,7 @@ namespace Ciel.Controllers
             }
 
             var product = await _context.Products
+                .Include(p => p.Catalog)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
@@ -46,6 +51,7 @@ namespace Ciel.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
+            ViewData["CatalogId"] = new SelectList(_context.Catalogs, "Id", "Id");
             return View();
         }
 
@@ -54,15 +60,40 @@ namespace Ciel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ProductName,Description,Picture,Price,CatalogId")] Product product)
+        public async Task<IActionResult> Create(ProductImage product)
         {
+            string uniqueFileName = UploadeFile(product);
             if (ModelState.IsValid)
             {
+                Product productI = new Product
+                {
+                    ProductName = product.ProductName,
+                    Description = product.Description,
+                    Picture = uniqueFileName
+                };
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            //ViewData["CatalogId"] = new SelectList(_context.Catalogs, "Id", "Id", product.CatalogId);
             return View(product);
+        }
+        private string UploadeFile(ProductImage actor)
+        {
+            string uniqueFileName = null;
+            if (actor.Picture != null)
+            {
+                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "Images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + actor.Picture.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                Console.WriteLine(filePath);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    actor.Picture.CopyTo(fileStream);
+                }
+            }
+            return uniqueFileName;
         }
 
         // GET: Products/Edit/5
@@ -78,6 +109,7 @@ namespace Ciel.Controllers
             {
                 return NotFound();
             }
+            ViewData["CatalogId"] = new SelectList(_context.Catalogs, "Id", "Id", product.CatalogId);
             return View(product);
         }
 
@@ -113,6 +145,7 @@ namespace Ciel.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CatalogId"] = new SelectList(_context.Catalogs, "Id", "Id", product.CatalogId);
             return View(product);
         }
 
@@ -125,6 +158,7 @@ namespace Ciel.Controllers
             }
 
             var product = await _context.Products
+                .Include(p => p.Catalog)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
@@ -153,6 +187,5 @@ namespace Ciel.Controllers
         {
             return _context.Products.Any(e => e.Id == id);
         }
-     
     }
 }
