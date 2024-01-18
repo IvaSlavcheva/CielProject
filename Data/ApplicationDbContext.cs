@@ -65,9 +65,9 @@ namespace Ciel.Data
       
         public DbSet<Review> Reviews { get; set; }
         
-        public DbSet<Order> Orders { get; set; }
+        public DbSet<Cart> Carts { get; set; }
         
-        public DbSet<Order_Product> Order_Product { get; set; }
+        public DbSet<Cart_Product> Cart_Products { get; set; }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 

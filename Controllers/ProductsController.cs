@@ -51,7 +51,7 @@ namespace Ciel.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
-            ViewData["CatalogId"] = new SelectList(_context.Catalogs, "Id", "Id");
+            ViewData["CatalogId"] = new SelectList(_context.Catalogs, "Id", "CatalogName");
             return View();
         }
 
@@ -69,13 +69,15 @@ namespace Ciel.Controllers
                 {
                     ProductName = product.ProductName,
                     Description = product.Description,
-                    Picture = uniqueFileName
+                    Picture = uniqueFileName,
+                    Price = product.Price,
+                    CatalogId = product.CatalogId
                 };
-                _context.Add(product);
+                _context.Add(productI);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            //ViewData["CatalogId"] = new SelectList(_context.Catalogs, "Id", "Id", product.CatalogId);
+            ViewData["CatalogId"] = new SelectList(_context.Catalogs, "Id", "CatalogName", product.CatalogId);
             return View(product);
         }
         private string UploadeFile(ProductImage actor)
@@ -109,8 +111,20 @@ namespace Ciel.Controllers
             {
                 return NotFound();
             }
-            ViewData["CatalogId"] = new SelectList(_context.Catalogs, "Id", "Id", product.CatalogId);
-            return View(product);
+            ViewData["CatalogId"] = new SelectList(_context.Catalogs, "Id", "CatalogName", product.CatalogId);
+
+            ProductImage productImage = new ProductImage
+            {
+                Id = product.Id,
+                ProductName = product.ProductName,
+                Description = product.Description,
+                Price = product.Price,
+                CatalogId = product.CatalogId,
+                Picture = GetImage($"{webHostEnvironment.WebRootPath}/images/{product.Picture}"),
+            };
+
+            
+            return View(productImage);
         }
 
         // POST: Products/Edit/5
@@ -118,34 +132,33 @@ namespace Ciel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ProductName,Description,Picture,Price,CatalogId")] Product product)
+        public async Task<IActionResult> Edit(ProductImage product)
         {
-            if (id != product.Id)
-            {
-                return NotFound();
-            }
+            string uniqueFileName = UploadeFile(product);
 
             if (ModelState.IsValid)
             {
-                try
+                Product? updateProduct = _context.Products.Find(product.Id);
+
+                if (updateProduct == null)
                 {
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
+                    ViewData["CatalogId"] = new SelectList(_context.Catalogs, "Id", "CatalogName", product.CatalogId);
+                    return View(product);
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProductExists(product.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+
+                System.IO.File.Delete($"{webHostEnvironment.WebRootPath}/images/{updateProduct.Picture}");
+
+                updateProduct.ProductName = product.ProductName;
+                updateProduct.Description = product.Description;
+                updateProduct.Picture = uniqueFileName;
+                updateProduct.Price = product.Price;
+                updateProduct.CatalogId = product.CatalogId;
+
+                _context.Update(updateProduct);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CatalogId"] = new SelectList(_context.Catalogs, "Id", "Id", product.CatalogId);
+            ViewData["CatalogId"] = new SelectList(_context.Catalogs, "Id", "CatalogName", product.CatalogId);
             return View(product);
         }
 
@@ -186,6 +199,25 @@ namespace Ciel.Controllers
         private bool ProductExists(int id)
         {
             return _context.Products.Any(e => e.Id == id);
+        }
+
+        public IFormFile GetImage(string path)
+        {
+            if (!System.IO.File.Exists(path))
+            {
+                return null;
+            }
+
+            using (var stream = new FileStream(path, FileMode.Open))
+            {
+                var formFile = new FormFile(stream, 0, stream.Length, null, Path.GetFileName(stream.Name))
+                {
+                    Headers = new HeaderDictionary(),
+                    ContentType = "image/*"
+                };
+
+                return formFile;
+            }
         }
     }
 }

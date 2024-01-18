@@ -30,6 +30,6 @@ namespace Ciel.Models
     
         //Relacii
         public ICollection<Review> Reviews { get; set; }
-        public ICollection<Order_Product> Orders { get; set; }
+        public ICollection<Cart_Product> Orders { get; set; }
     }
 }
