@@ -1,13 +1,14 @@
 ﻿@model Ciel.Models.Product
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Delete";
 }
 
-<h1>Details</h1>
+<h1>Изтрий</h1>
 
+<h3>Сигурни ли сте, че искате да изтриете продукта?</h3>
 <div>
-    <h4>Product</h4>
+    <h4>Продукт</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -26,7 +27,7 @@
             @Html.DisplayNameFor(model => model.Picture)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Picture)
+            <img width="10%" src="~/images/@Model.Picture" alt="product image" />
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Price)
@@ -38,11 +39,13 @@
             @Html.DisplayNameFor(model => model.Catalog)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Catalog.CatalogName)
+            @Html.DisplayFor(model => model.Catalog.Id)
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
 </div>

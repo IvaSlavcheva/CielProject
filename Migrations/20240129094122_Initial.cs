@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Ciel.Migrations
 {
     /// <inheritdoc />
-    public partial class CielDb : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,10 +32,9 @@ namespace Ciel.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(21)", maxLength: 21, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EGN = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    EGN = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -176,20 +175,20 @@ namespace Ciel.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Orders",
+                name: "Carts",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
-                    Shipping = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Shipping = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.PrimaryKey("PK_Carts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Orders_AspNetUsers_UserId",
+                        name: "FK_Carts_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -220,25 +219,25 @@ namespace Ciel.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Order_Product",
+                name: "Cart_Products",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderId = table.Column<int>(type: "int", nullable: false),
+                    CartId = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Order_Product", x => x.Id);
+                    table.PrimaryKey("PK_Cart_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Order_Product_Orders_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
+                        name: "FK_Cart_Products_Carts_CartId",
+                        column: x => x.CartId,
+                        principalTable: "Carts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Order_Product_Products_ProductId",
+                        name: "FK_Cart_Products_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -282,7 +281,7 @@ namespace Ciel.Migrations
                 values: new object[,]
                 {
                     { 1, 4, "Хидратиращ и успокояващ крем", "1.jpg", 19.899999999999999, "Крем за лице" },
-                    { 2, 2, "Удължава и хидратира миглите", "0.jpg", 17.989999999999998, "Серум за мигли" },
+                    { 2, 2, "Удължава и хидратира миглите", "2.jpg", 17.989999999999998, "Серум за мигли" },
                     { 3, 3, "Облекчава сухите и напукани устни.", "3.jpg", 21.989999999999998, "Маска за устни" }
                 });
 
@@ -326,18 +325,18 @@ namespace Ciel.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_Product_OrderId",
-                table: "Order_Product",
-                column: "OrderId");
+                name: "IX_Cart_Products_CartId",
+                table: "Cart_Products",
+                column: "CartId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_Product_ProductId",
-                table: "Order_Product",
+                name: "IX_Cart_Products_ProductId",
+                table: "Cart_Products",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_UserId",
-                table: "Orders",
+                name: "IX_Carts_UserId",
+                table: "Carts",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -370,7 +369,7 @@ namespace Ciel.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Order_Product");
+                name: "Cart_Products");
 
             migrationBuilder.DropTable(
                 name: "Reviews");
@@ -379,7 +378,7 @@ namespace Ciel.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Orders");
+                name: "Carts");
 
             migrationBuilder.DropTable(
                 name: "Products");

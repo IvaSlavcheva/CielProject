@@ -6,15 +6,6 @@ namespace Ciel.Models
 {
     public class Cart
     {
-  /*      public Cart(string userId, double price, DateTime shipping)
-        {
-           
-            UserId = userId;
-            Price = price;
-            Shipping = shipping;
-            this.Products =new List<Cart_Product>();
-        }*/
-
         [Key]
         public int Id { get; set; }
 

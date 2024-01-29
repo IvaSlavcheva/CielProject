@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ciel.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -42,7 +42,7 @@ namespace Ciel.Data
                      Id = 2,
                      ProductName = "Серум за мигли",
                      Description = "Удължава и хидратира миглите",
-                     Picture = "0.jpg",
+                     Picture = "2.jpg",
                      Price = 17.99,
                      CatalogId = 2
                  },

@@ -10,8 +10,9 @@ using Ciel.Models;
 using Ciel.Models.NewModelView;
 using System.Numerics;
 
-namespace Ciel.Controllers
+namespace Ciel.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -19,7 +20,7 @@ namespace Ciel.Controllers
         public ProductsController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
-            this.webHostEnvironment = webHostEnvironment;   
+            this.webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Products
@@ -123,7 +124,7 @@ namespace Ciel.Controllers
                 Picture = GetImage($"{webHostEnvironment.WebRootPath}/images/{product.Picture}"),
             };
 
-            
+
             return View(productImage);
         }
 

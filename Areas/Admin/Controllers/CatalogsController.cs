@@ -8,8 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Ciel.Data;
 using Ciel.Models;
 
-namespace Ciel.Controllers
+namespace Ciel.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CatalogsController : Controller
     {
         private readonly ApplicationDbContext _context;
