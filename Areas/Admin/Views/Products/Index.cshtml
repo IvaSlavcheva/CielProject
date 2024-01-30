@@ -11,6 +11,14 @@
    @*  <a asp-action="Create">Създаване на продукт</a> *@
     <a class="btn btn-outline-primary" asp-action="Create" ><i class="bi bi-pencil-square"></i>Създаване на продукт</a> 
 </p>
+<form id="searchForm" method="get">
+    <p>
+        <label for="nameSearch">Search by Name: </label>
+        <input type="text" id="nameSearch" name="nameSearch" value="@ViewData["NameSearch"]" />
+        <button type="submit">Search</button>
+        <button type="button" onclick="clearSearch('name')">Clear</button>
+    </p>
+</form>
 <table class="table">
     <thead>
         <tr>
