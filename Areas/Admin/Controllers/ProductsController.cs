@@ -63,9 +63,14 @@ namespace Ciel.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductImage product)
         {
-            string uniqueFileName = UploadeFile(product);
+            if(product.Picture == null)
+            {
+                ModelState.AddModelError("Picture", "Трябва да се качи снимка.");
+            }
+
             if (ModelState.IsValid)
             {
+                string uniqueFileName = UploadeFile(product);
                 Product productI = new Product
                 {
                     ProductName = product.ProductName,
@@ -135,8 +140,6 @@ namespace Ciel.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ProductImage product)
         {
-            string uniqueFileName = UploadeFile(product);
-
             if (ModelState.IsValid)
             {
                 Product? updateProduct = _context.Products.Find(product.Id);
@@ -147,11 +150,18 @@ namespace Ciel.Areas.Admin.Controllers
                     return View(product);
                 }
 
-                System.IO.File.Delete($"{webHostEnvironment.WebRootPath}/images/{updateProduct.Picture}");
+                if (product.Picture != null)
+                {
+                    if (System.IO.File.Exists($"{webHostEnvironment.WebRootPath}/images/{updateProduct.Picture}"))
+                    {
+                        System.IO.File.Delete($"{webHostEnvironment.WebRootPath}/images/{updateProduct.Picture}");
+                    }
+
+                    updateProduct.Picture = UploadeFile(product);
+                }
 
                 updateProduct.ProductName = product.ProductName;
                 updateProduct.Description = product.Description;
-                updateProduct.Picture = uniqueFileName;
                 updateProduct.Price = product.Price;
                 updateProduct.CatalogId = product.CatalogId;
 

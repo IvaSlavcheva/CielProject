@@ -1,0 +1,84 @@
+﻿@using Ciel.Models.NewModelView
+@using System.Globalization
+@model IEnumerable<Ciel.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1></h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Име на продукт
+            </th>
+            <th>
+                Описание
+            </th>
+            <th>
+                Снимка
+            </th>
+            <th>
+               Цена
+            </th>
+            <th>
+                Каталог
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                
+                <td class="align-middle">
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td class="align-middle">
+                    @Html.DisplayFor(modelItem => item.Description)
+				</td>
+				<td class="align-middle">
+					<img class="rounded-circle" src="~/Images/@item.Picture" alt="@item.ProductName" style="max-width: 100px" />
+				</td>
+                <td class="align-middle">
+                    @* @string.Format("{0:C2}", item.Price) *@
+                    @String.Format(new CultureInfo("bg-BG"), "{0:C}", item.Price)
+                </td>
+                <td class="align-middle">
+                    @Html.DisplayFor(modelItem => item.Catalog.CatalogName)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+@* @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Picture)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Catalog.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table> *@

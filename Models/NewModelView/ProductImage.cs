@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Ciel.Models.NewModelView
@@ -8,13 +9,17 @@ namespace Ciel.Models.NewModelView
 
         [Key]
         public int Id { get; set; }
+        [DisplayName("Име")]
         public string ProductName { get; set; }
+        [DisplayName("Описание")]
         public string Description { get; set; }
-
-        public IFormFile Picture { get; set; }
+        [DisplayName("Снимка")]
+        [ValidateNever]
+        public IFormFile? Picture { get; set; }
+        [DisplayName("Цена")]
         public double Price { get; set; }
+        [DisplayName("Каталог")]
         public int CatalogId { get; set; }
-
 		[ValidateNever]
 		public Catalog Catalog { get; set; }
 
