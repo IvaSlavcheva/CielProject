@@ -19,7 +19,6 @@ namespace Ciel.Models
             Catalog = catalog;
 
         }
-
         [Key]
         public int Id { get; set; }
         [DisplayName("Име")]

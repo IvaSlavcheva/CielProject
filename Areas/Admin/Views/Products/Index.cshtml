@@ -13,10 +13,10 @@
 </p>
 <form id="searchForm" method="get">
     <p>
-        <label for="nameSearch">Search by Name: </label>
+        <label for="nameSearch">Търси по име: </label>
         <input type="text" id="nameSearch" name="nameSearch" value="@ViewData["NameSearch"]" />
-        <button type="submit">Search</button>
-        <button type="button" onclick="clearSearch('name')">Clear</button>
+        <button type="submit">Търси</button>
+        <button type="button" onclick="clearSearch('name')">Изчисти</button>
     </p>
 </form>
 <table class="table">
@@ -74,29 +74,3 @@
 
 </table>
 
-@* @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Picture)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Catalog.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table> *@

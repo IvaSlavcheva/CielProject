@@ -19,12 +19,12 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark"  asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
+                  @*       <li class="nav-item">
+                            <a class="nav-link text-dark"  asp-area="Customer" asp-controller="Home" asp-action="Index">Начало</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                            <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Privacy">Поверителност</a>
+                        </li> *@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="About">За нас</a>
                         </li>
@@ -33,17 +33,17 @@
                         @if (User.IsInRole("Customer"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Products" asp-action="Index">Products</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Products" asp-action="Index">Продукти</a>
                             </li>
                         }
 
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Products" asp-action="Index">Products</a>
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Products" asp-action="Index">Продукти</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Catalogs" asp-action="Index">Catalogs</a>
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Catalogs" asp-action="Index">Каталози</a>
                             </li>
                         }
                     </ul>
