@@ -1,4 +1,5 @@
 ﻿using Ciel.Data;
+using Ciel.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,10 +15,39 @@ namespace Ciel.Areas.Customer.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nameSearch)
         {
-            var applicationDbContext = _context.Products.Include(p => p.Catalog);
-            return View(await applicationDbContext.ToListAsync());
+            ViewData["NameSearch"] = nameSearch;
+
+            // Get all products with optional filtering by name
+            IQueryable<Product> query = _context.Products
+                .Include(p => p.Catalog);
+
+            if (!string.IsNullOrEmpty(nameSearch))
+            {
+                query = query.Where(p => p.ProductName.Contains(nameSearch));
+            }
+
+            List<Product> productList = await query.ToListAsync();
+
+            return View(productList);
+        }
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _context.Products
+                .Include(p => p.Catalog)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
         }
     }
 }

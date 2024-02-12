@@ -1,4 +1,5 @@
 ﻿@using Ciel.Models.NewModelView
+@using System.Globalization
 @model IEnumerable<Ciel.Models.Product>
 
 @{
@@ -55,7 +56,7 @@
 					<img class="rounded-circle" src="~/Images/@item.Picture" alt="@item.ProductName" style="max-width: 100px" />
 				</td>
                 <td class="align-middle">
-                    @string.Format("{0:C2}", item.Price)
+                    @String.Format(new CultureInfo("bg-BG"), "{0:C}", item.Price)
                 </td>
                 <td class="align-middle">
                     @Html.DisplayFor(modelItem => item.Catalog.CatalogName)

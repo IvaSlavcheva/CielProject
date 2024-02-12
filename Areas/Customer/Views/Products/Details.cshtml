@@ -1,0 +1,96 @@
+﻿@using System.Globalization
+@model Ciel.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@* <h1>Детайли</h1>
+
+<div>
+    <h4>Продукт</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Picture)
+        </dt>
+        <dd class = "col-sm-10">
+            <img width="10%" src="~/images/@Model.Picture" alt="product image" />
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Catalog)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Catalog.CatalogName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Редактирай</a> |
+    <a asp-action="Index">Назад</a>
+</div>
+ *@
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <div class="card mb-12">
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <div class="card-header text-white bg-info">
+                        <p class="card-text">
+                            <h5 class="card-title">
+                                @Model.ProductName
+                            </h5>
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <img id="ProfilePicturePreview" class="border-info rounded-circle" style="max-width: 150px" />
+                </div>
+                <div class="col-md-4">
+                    <img src="~/images/@Model.Picture" width="100%" alt="@Model.ProductName">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                       
+                        <p class="card-text">@Model.Description</p>
+                        @*  <p class="card-text">@Model.Price</p> *@
+                        @String.Format(new CultureInfo("bg-BG"), "{0:C}", Model.Price)
+                        <p class="card-text">@Model.Catalog.CatalogName</p>  
+                        <a class="btn btn btn-info float-left" asp-controller="Carts" asp-action="Create" asp-route-doctorId="@Model.Id">
+                            <i class="bi bi-cart-plus"></i>  Добави в кошницата
+                            </a>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card-footer">
+                        <p class="card-text">
+                            
+                            <a class="btn btn-outline-primary float-right" asp-action="Index">
+                                Обратно към страницата
+                            </a>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
