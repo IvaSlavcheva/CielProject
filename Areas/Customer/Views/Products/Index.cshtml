@@ -7,70 +7,19 @@
 }
 
 <h1></h1>
-
-@* <table class="table">
-    <thead>
-        <tr>
-            <th>
-                Име на продукт
-            </th>
-            <th>
-                Описание
-            </th>
-            <th>
-                Снимка
-            </th>
-            <th>
-               Цена
-            </th>
-            <th>
-                Каталог
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                
-                <td class="align-middle">
-                    @Html.DisplayFor(modelItem => item.ProductName)
-                </td>
-                <td class="align-middle">
-                    @Html.DisplayFor(modelItem => item.Description)
-				</td>
-				<td class="align-middle">
-					<img class="rounded-circle" src="~/Images/@item.Picture" alt="@item.ProductName" style="max-width: 100px" />
-				</td>
-                <td class="align-middle">
-                    @* @string.Format("{0:C2}", item.Price) *@
-                  @*   @String.Format(new CultureInfo("bg-BG"), "{0:C}", item.Price)
-                </td>
-                <td class="align-middle">
-                    @Html.DisplayFor(modelItem => item.Catalog.CatalogName)
-                </td>
-
-            </tr>
-        }
-    </tbody>
-
-</table> *@ 
-@* //novo *@
 <form id="searchForm" method="get">
     <p>
         <label for="nameSearch">Търси по име: </label>
         <input type="text" id="nameSearch" name="nameSearch" value="@ViewData["NameSearch"]" />
-    
-            <button class="btn btn-primary" type="button">Търси</button>
-            <button class="btn btn-primary" type="button" asp-action="Index">Изчисти</button>
-       
-		
+
+            <button class="btn btn-primary" type="submit">Търси</button>
+            <a class="btn btn-primary" asp-action="Index">Изчисти</a>
     </p>
 </form>
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="col-md-4 col-xs-6 border-primary mb-3">
+       <div class="col-md-4 col-xs-6 border-primary mb-3">
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-12">
@@ -78,43 +27,32 @@
                             <p class="card-text">
                                 <h5 class="card-title">
                                     @item.ProductName
-
                                 </h5>
                             </p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <img src="~/images/@item.Picture" width="100%" asp-append-version="true" alt="@item.ProductName">
-
-
                     </div>
-
                     <div class="col-md-6">
-                        <div class="card-body">
-                            
-                            <p class="card-text">@item.Description</p>
-                           
-                            <class="align-middle">
-                               
-                                @String.Format(new CultureInfo("bg-BG"), "{0:C}", item.Price)
-                           
+                        <div class="card-body">                           
+                            <p class="card-text">@item.Description</p>                       
+                            <class="align-middle">                        
+                                @String.Format(new CultureInfo("bg-BG"), "{0:C}", item.Price)                        
                             <p class="card-text">@item.Catalog.CatalogName</p>
                         </div>
                     </div>
-                    <div class="col-md-12">                                               
-                            <div class="card-footer ">
+                      <div class="col-md-12">                                               
+                           <div class="card-footer ">
                                 <p class="card-text">
                                     <a class="btn btn-outline-primary float-right" asp-action="Details" asp-route-id="@item.Id">
                                         <i class="bi bi-eye-fill"></i> Покажи детайлите
-                                    </a>
-						
+                                    </a>						
                                 </p>
-                            </div>
-                            </div>                    
-                    </div>
-                </div>
+                           </div>
+                      </div>                    
+                </div>              
             </div>
-       
-
+       </div> 
     }
 </div>

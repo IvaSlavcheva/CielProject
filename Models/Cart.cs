@@ -10,10 +10,13 @@ namespace Ciel.Models
         public int Id { get; set; }
 
         public double Price { get; set; }
-      
+
+        public string UserId { get; set; }
+
         [DataType(DataType.Date)]
         public DateTime Shipping { get; set; }
 
+        [ForeignKey("UserId")]
         public ApplicationUser User { get; set; }
 
         public ICollection<Cart_Product> Products { get; set; }

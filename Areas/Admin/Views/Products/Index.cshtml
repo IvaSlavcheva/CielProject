@@ -44,8 +44,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                
+            <tr>               
                 <td class="align-middle">
                     @Html.DisplayFor(modelItem => item.ProductName)
                 </td>
@@ -67,11 +66,8 @@
                     <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-eye"></i>Детайли </a> 
                     <a class="btn btn-danger text-white" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i>Изтрий</a>
                 </td>
-
-
             </tr>
         }
     </tbody>
-
 </table>
 

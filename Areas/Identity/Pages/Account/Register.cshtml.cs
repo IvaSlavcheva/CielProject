@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
+using Ciel.Data;
 using Ciel.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -29,20 +30,23 @@ namespace Ciel.Areas.Identity.Pages.Account
         private readonly IUserStore<ApplicationUser> _userStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly RoleManager<IdentityRole> _roleManager;
-
+        private readonly ApplicationDbContext _applicationDbContext;
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             IUserStore<ApplicationUser> userStore,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            RoleManager<IdentityRole>roleManager)
+            RoleManager<IdentityRole>roleManager,
+            ApplicationDbContext applicationDbContext)
         {
             _userManager = userManager;
             _userStore = userStore;
             _signInManager = signInManager;
             _logger = logger;
             _roleManager = roleManager;
-           
+            _applicationDbContext = applicationDbContext;
+
+
         }
 
         /// <summary>
@@ -140,6 +144,9 @@ namespace Ciel.Areas.Identity.Pages.Account
                     await _userManager.AddToRoleAsync(user, "Customer");
 
                     _logger.LogInformation("User created a new account with password.");
+
+                    _applicationDbContext.Carts.Add(new Cart() { UserId = user.Id });
+                    _applicationDbContext.SaveChanges();
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

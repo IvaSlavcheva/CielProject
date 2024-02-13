@@ -1,5 +1,6 @@
 ﻿using Ciel.Data;
 using Ciel.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,9 +13,8 @@ namespace Ciel.Areas.Customer.Controllers
 
         public ProductsController(ApplicationDbContext context)
         {
-            _context = context;
+            this._context = context;
         }
-
         public async Task<IActionResult> Index(string nameSearch)
         {
             ViewData["NameSearch"] = nameSearch;
@@ -27,9 +27,7 @@ namespace Ciel.Areas.Customer.Controllers
             {
                 query = query.Where(p => p.ProductName.Contains(nameSearch));
             }
-
             List<Product> productList = await query.ToListAsync();
-
             return View(productList);
         }
         public async Task<IActionResult> Details(int? id)
@@ -38,7 +36,6 @@ namespace Ciel.Areas.Customer.Controllers
             {
                 return NotFound();
             }
-
             var product = await _context.Products
                 .Include(p => p.Catalog)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -46,7 +43,6 @@ namespace Ciel.Areas.Customer.Controllers
             {
                 return NotFound();
             }
-
             return View(product);
         }
     }
