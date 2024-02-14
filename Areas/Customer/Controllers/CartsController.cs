@@ -30,6 +30,7 @@ namespace Ciel.Areas.Customer.Controllers
             var ids = cart.Products.Select(p => p.ProductId).ToList();
 
             List<Product> products = new List<Product>();
+
             foreach (var id in ids)
             {
                 products.Add(_context.Products.Find(id));

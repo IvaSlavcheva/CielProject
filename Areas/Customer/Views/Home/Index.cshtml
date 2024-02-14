@@ -1,8 +1,23 @@
-﻿@{
+﻿@model IEnumerable<Ciel.Models.Catalog>
+@using Ciel.Models.NewModelView
+@using System.Globalization
+@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="p-t-55">
+    <h4 class="mtext-112 cl2 p-b-33">
+        Каталози
+    </h4>
 </div>
+@foreach (var item in Model)
+{
+    <div>
+        <ul>
+            <li class="bor18">
+                <a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+                    @item.CatalogName
+                </a>
+            </li>
+        </ul>
+    </div>
+}
