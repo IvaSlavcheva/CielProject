@@ -19,8 +19,8 @@
 <div class="row">
     @foreach (var item in Model)
     {
-       <div class="col-md-4 col-xs-6 border-primary mb-3">
-            <div class="card mb-3" style="max-width: 540px;">
+        <div class="col-md-3 col-xs-4 border-primary mb-3" >
+            <div class="card mb-4" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-12">
                         <div class="card-header text-white bg-info">
@@ -31,15 +31,16 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 text-center">
                         <img src="~/images/@item.Picture" width="100%" asp-append-version="true" alt="@item.ProductName">
                     </div>
-                    <div class="col-md-6">
-                        <div class="card-body">                           
-                            <p class="card-text">@item.Description</p>                       
-                            <class="align-middle">                        
-                                @String.Format(new CultureInfo("bg-BG"), "{0:C}", item.Price)                        
-                            <p class="card-text">@item.Catalog.CatalogName</p>
+                    <div class="col-md-">
+                        <div class="card-body">
+                            <p class="card-text">@item.Description.Substring(0, Math.Min(150, item.Description.Length))...</p>
+							<class ="align-middle">
+								<p class="card-text">@item.Catalog.CatalogName</p>
+								@String.Format(new CultureInfo("bg-BG"), "{0:C}", item.Price)                        
+                            
                         </div>
                     </div>
                       <div class="col-md-12">                                               
@@ -50,9 +51,9 @@
                                     </a>						
                                 </p>
                            </div>
-                      </div>                    
                 </div>              
             </div>
        </div> 
-    }
+    
 </div>
+}

@@ -25,10 +25,10 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                       
-                        <p class="card-text">@Model.Description</p>
-                        @String.Format(new CultureInfo("bg-BG"), "{0:C}", Model.Price)
-                        <p class="card-text">@Model.Catalog.CatalogName</p>  
+
+						<p class="card-text">@Model.Description</p>
+                        <p class="card-text">@Model.Catalog.CatalogName</p>
+						<p>@String.Format(new CultureInfo("bg-BG"), "{0:C}", Model.Price)</p>
                         <a class="btn btn btn-info float-left" asp-controller="Carts" asp-action="Create" asp-route-productId="@Model.Id">
                                 Добави в кошницата
                         </a>
