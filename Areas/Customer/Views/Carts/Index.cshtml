@@ -1,11 +1,12 @@
 ﻿@using System.Globalization
 @* @model IEnumerable<Ciel.Models.Cart> *@
-@model List<Product>
+@* @model List<Product> *@
+@model Dictionary<Product,int>
 
 @{
     ViewData["Title"] = "Cart";
 }
-@foreach (var item in Model)
+@* @foreach (var item in Model)
 {
     <div class="col-md-4 col-xs-6 border-primary mb-3">
         <div class="card mb-3" style="max-width: 540px;">
@@ -36,6 +37,48 @@
                         <p class="card-text">
                             <a class="btn btn-outline-primary float-right" asp-controller="Products" asp-action="Details" asp-route-id="@item.Id">
                                 <i class="bi bi-eye-fill"></i> Покажи детайлите..
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+} *@
+@foreach (var item in Model.Keys)
+{
+    <div style="font-variant:small-caps; font-weight: 400;" class="col-md-4 col-xs-6 border-primary mb-3">
+
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <div class="card-header text-white bg-info">
+                        <div style="display: flex; justify-content: flex-end"><a asp-action="Delete" asp-route-productId="@item.Id"><i class="bi bi-x-lg"></i></a></div>
+                        <p class="card-text">
+                            <h5 class="card-title">
+                                @item.ProductName
+                            </h5>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="~/images/@item.Picture" width="100%" asp-append-version="true" alt="@item.ProductName">
+                </div>
+
+                <div style="font-variant:small-caps; font-weight: 400;" class="col-md-6">
+                    <div class="card-body">
+                        <p class="card-text">@item.Description</p>
+                        <class ="align-middle">
+                            @String.Format(new CultureInfo("bg-BG"), "{0:C}", item.Price)
+                            <p class="card-text">@item.Catalog</p>
+                            <p>@Model[item]</p>
+                    </div>
+                </div>
+                <div style="font-variant:small-caps; font-weight: 400;" class="col-md-12">
+                    <div class="card-footer ">
+                        <p class="card-text">
+                            <a class="btn btn-outline-primary float-right" asp-controller="Products" asp-action="Details" asp-route-id="@item.Id">
+                                <i class="bi bi-eye-fill"></i> Покажи детайлите
                             </a>
                         </p>
                     </div>
