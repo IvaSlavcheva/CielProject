@@ -3,8 +3,12 @@
 @inject UserManager<ApplicationUser> UserManager
 
 <ul class="navbar-nav">
+   
 @if (SignInManager.IsSignedIn(User))
 {
+        <li>
+            <a class="nav-link text-dark" asp-area="Customer" asp-controller="Carts" asp-action="Index"><i class="bi bi-cart4"></i></a>
+        </li>
     <li class="nav-item">
         <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Здравей, @User.Identity?.Name!</a>
     </li>

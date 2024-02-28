@@ -22,36 +22,27 @@
     }
 </style>
 <h1></h1>
-<form id="searchForm" method="get">
-    <p>
-        <label for="nameSearch">Търси по име: </label>
-        <input type="text" id="nameSearch" name="nameSearch" value="@ViewData["NameSearch"]" />
-            <button class="btn btn-primary" type="submit">Търси</button>
-            <a class="btn btn-primary" asp-action="Index">Изчисти</a>
-    </p>
-</form>
-
 <div>
     <table>
         <tr>
             <th>
-				<img class="rounded-circle" src="~/images/eyezone.jpg" width="100" height="100" alt="Околоочна зона" class="rounded">
+                <img class="rounded-circle" src="~/images/eyezone.jpg" width="100" height="100" alt="Околоочна зона" class="rounded">
                 <a asp-action="SearchByCatalog" asp-route-catalogId="1"><p>Околоочна зона</p></a>
             </th>
             <th>
-				<img class="rounded-circle" src="~/images/lashes.jpg" width="100" height="100" alt="Вежди и мигли" class="rounded">
-				<a asp-action="SearchByCatalog" asp-route-catalogId="2"><p>Вежди и мигли</p></a>
+                <img class="rounded-circle" src="~/images/lashes.jpg" width="100" height="100" alt="Вежди и мигли" class="rounded">
+                <a asp-action="SearchByCatalog" asp-route-catalogId="2"><p>Вежди и мигли</p></a>
             </th>
             <th>
-				<img class="rounded-circle" src="~/images/lips.jpg" width="100" height="100" alt="Устни" class="rounded">
-				<a asp-action="SearchByCatalog" asp-route-catalogId="3"><p>Устни</p></a>
+                <img class="rounded-circle" src="~/images/lips.jpg" width="100" height="100" alt="Устни" class="rounded">
+                <a asp-action="SearchByCatalog" asp-route-catalogId="3"><p>Устни</p></a>
             </th>
-			<th>
-				<img class="rounded-circle" src="~/images/face.jpg" width="100" height="100" alt="Цялостна грижа" class="rounded">
-				<a asp-action="SearchByCatalog" asp-route-catalogId="4"><p>Цялостна грижа</p></a>
+            <th>
+                <img class="rounded-circle" src="~/images/face.jpg" width="100" height="100" alt="Цялостна грижа" class="rounded">
+                <a asp-action="SearchByCatalog" asp-route-catalogId="4"><p>Цялостна грижа</p></a>
             </th>
         </tr>
-    </table>  
+    </table>
 </div>
 <div class="row">
 
