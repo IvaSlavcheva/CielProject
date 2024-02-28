@@ -21,25 +21,36 @@
         border-radius: 50%;
     }
 </style>
+<style>
+    .link-style {
+        color: hotpink; /* Сменя цвета на текста на линка (черен) */
+    }
+
+        .link-style:hover,
+        .link-style:active {
+            color: deeppink; /* Сменя цвета на текста на линка при ховър и натискане (по-тъмно синьо) */
+        }
+</style>
 <h1></h1>
+
 <div>
     <table>
         <tr>
             <th>
                 <img class="rounded-circle" src="~/images/eyezone.jpg" width="100" height="100" alt="Околоочна зона" class="rounded">
-                <a asp-action="SearchByCatalog" asp-route-catalogId="1"><p>Околоочна зона</p></a>
+                <a class="link-style" asp-action="SearchByCatalog" style="text-decoration:none" ; asp-route-catalogId="1"><p>Околоочна зона</p></a>
             </th>
             <th>
                 <img class="rounded-circle" src="~/images/lashes.jpg" width="100" height="100" alt="Вежди и мигли" class="rounded">
-                <a asp-action="SearchByCatalog" asp-route-catalogId="2"><p>Вежди и мигли</p></a>
+                <a class="link-style" asp-action="SearchByCatalog" style="text-decoration:none" ; asp-route-catalogId="2"><p>Вежди и мигли</p></a>
             </th>
             <th>
                 <img class="rounded-circle" src="~/images/lips.jpg" width="100" height="100" alt="Устни" class="rounded">
-                <a asp-action="SearchByCatalog" asp-route-catalogId="3"><p>Устни</p></a>
+                <a class="link-style" asp-action="SearchByCatalog" style="text-decoration:none" ; asp-route-catalogId="3"><p>Устни</p></a>
             </th>
             <th>
-                <img class="rounded-circle" src="~/images/face.jpg" width="100" height="100" alt="Цялостна грижа" class="rounded">
-                <a asp-action="SearchByCatalog" asp-route-catalogId="4"><p>Цялостна грижа</p></a>
+                <img class="rounded-circle" src="~/images/face1.jpg" width="100" height="100" alt="Цялостна грижа" class="rounded">
+                <a class="link-style" asp-action="SearchByCatalog" style="text-decoration:none" ; asp-route-catalogId="4"><p>Цялостна грижа</p></a>
             </th>
         </tr>
     </table>
@@ -48,11 +59,11 @@
 
     @foreach (var item in Model)
     {
-        <div class="col-md-3 col-xs-4 border-primary mb-3" >
+        <div class="col-md-3 col-xs-4 border-primary mb-3">
             <div class="card mb-4" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-12">
-                        <div class="card-header text-white bg-info">
+                        <div class="card-header text-white bg-dark">
                             <p class="card-text">
                                 <h5 class="card-title">
                                     @item.ProductName
@@ -66,22 +77,25 @@
                     <div class="col-md-">
                         <div class="card-body">
                             <p class="card-text">@item.Description.Substring(0, Math.Min(150, item.Description.Length))...</p>
-							<class ="align-middle">
-								<p class="card-text">@item.Catalog.CatalogName</p>
-								@String.Format(new CultureInfo("bg-BG"), "{0:C}", item.Price)                        
-                            
+                            <class ="align-middle">
+                                <p class="card-text">@item.Catalog.CatalogName</p>
+                                @String.Format(new CultureInfo("bg-BG"), "{0:C}", item.Price)
+
                         </div>
                     </div>
-                      <div class="col-md-12">                                               
-                           <div class="card-footer ">
-                                <p class="card-text">
-                                    <a class="btn btn-outline-primary float-right" asp-action="Details" asp-route-id="@item.Id">
-                                        <i class="bi bi-eye-fill"></i> Покажи детайлите
-                                    </a>						
-                                </p>
-                           </div>
-                </div>              
-            </div>
+                    <div class="col-md-12">
+                        <div class="card-footer ">
+                            <p class="card-text">
+                                @*  <a class="btn btn-outline-dark float-right text-dark " asp-action="Details" asp-route-id="@item.Id">
+                            <i class="bi bi-eye-fill text-dark"></i> Покажи детайлите
+                            </a> *@
+                                <a class="btn btn-outline-dark float-right bg-light text-dark" asp-action="Details" asp-route-id="@item.Id">
+                                    <i class="bi bi-eye-fill text-dark"></i> Покажи детайлите
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
        </div> 
     
 </div>
