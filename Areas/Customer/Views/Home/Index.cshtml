@@ -4,3 +4,29 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<div class="homePage">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap">
+
+	<center><h1>C I E L</h1></center>
+</div>
+<div class="mainLabel">
+	<center>
+		<p>Добре дошли в нашия онлайн магазин за козметика за перфектна кожа! </p>
+		<p>За да разгледате нашите натурални продукти, моля, регистрирайте се или влезте в своя профил.</p>
+		<p>Само регистрираните потребители имат достъп до нашата пълна гама от продукти за лице, създадени с внимание към вашата красота и увереност.</p>
+		<br />
+	</center>
+
+	<div style="margin-bottom: 100px;">
+	<center><a class="btn btn-dark" asp-area="Identity" asp-page="/Account/Register">
+        Присъедини се <img src="~/images/arrow.png" alt="send to register page button" width="25" />
+		</a>
+	</center>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+    document.body.style.background = "url(\"images/homepage.jpeg\")"
+    document.body.style.backgroundSize = "cover"
+</script>
