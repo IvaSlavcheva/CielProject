@@ -9,11 +9,5 @@ namespace Ciel.Models
         public int Id { get; set; }
         [DisplayName("Име")]
         public string CatalogName { get; set; }
-        //public ICollection<Product> Products { get; set; } = new List<Product>();
-        //public Catalog(string catalogName)
-        //{
-
-        //    CatalogName = catalogName;
-        //}
     }
 }

@@ -10,7 +10,6 @@ namespace Ciel.Models
             ProductId = productId;
             Description = description;
         }
-
         [Key]
         public int Id { get; set; }
         public int ProductId { get; set; }

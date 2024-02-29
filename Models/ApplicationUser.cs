@@ -7,11 +7,7 @@ namespace Ciel.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        //public ApplicationUser()
-        //{
-        //    Cart userCart = new Cart();
-        //}
-
+   
         [MaxLength(30)]
         [Required]
         [Display(Name = "Име")]
@@ -24,10 +20,5 @@ namespace Ciel.Models
         [Required]
         [Display(Name = "ЕГН")]
         public string EGN { get; set; }
-
-        //public int CartId { get; set; }
-
-        //[ForeignKey("CartId")]
-        //public Cart Cart { get; set; }
     }
 }

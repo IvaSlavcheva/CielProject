@@ -14,6 +14,7 @@
                             <h5 class="card-title">
                                 @Model.ProductName
                             </h5>
+
                         </p>
                     </div>
                 </div>
@@ -43,8 +44,34 @@
                             </a>
                         </p>
                     </div>
+
+                </div>
+                <h3>Ревю на @Model.ProductName</h3>
+                <form asp-controller="Products" asp-action="AddReview" method="post">
+                    <input type="hidden" name="productId" value="@Model.Id" />
+                    <div class="form-group">
+                        <label for="description">Напиши своето мнение за продукта:</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Изпрати</button>
+                </form>
+
+                <!-- Reviews section code -->
+                <h3>Всички ревюта:</h3>
+                @if (Model.Reviews != null && Model.Reviews.Any())
+                {
+                    <ul>
+                        @foreach (var review in Model.Reviews)
+                        {
+                            <li>
+                                <p>@review.Description</p>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>Все още няма ревюта.</p>
+                }
                 </div>
             </div>
-        </div>
-    </div>
-</div>
