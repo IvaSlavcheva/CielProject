@@ -7,12 +7,13 @@ namespace Ciel.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        [Required(ErrorMessage = "Полето е задължително.")]
-        [MaxLength(64, ErrorMessage = "Полето {0} не може да има повече от {1} символа.")]
+        [Required]
+        [MaxLength(64)]
         [Display(Name = "Име")]
         public string Name { get; set; }
-        [MaxLength(30)]
+
         [Required]
+        [MaxLength(30)]
         [Display(Name = "Фамилия")]
         public string LastName { get; set; }
         [MaxLength(10)]

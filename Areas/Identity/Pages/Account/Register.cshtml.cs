@@ -75,36 +75,38 @@ namespace Ciel.Areas.Identity.Pages.Account
         public class InputModel
         {
             [MaxLength(30)]
-            [Required]
+            [Required(ErrorMessage = "Потребителското име е задължително")]
             [Display(Name = "Потребителско име")]
             public string UserName { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Паролата е задължителна")]
+            [StringLength(100, ErrorMessage = "Паролата трябва да бъде минимум 6 елемента и максимум 100 елемента.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Парола")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
             [Display(Name = "Потвърдете паролата")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Compare("Password", ErrorMessage = "Паролата не съвпада.")]
             public string ConfirmPassword { get; set; }
 
-            [MaxLength(30)]
-            [Required]
+            [Required(ErrorMessage = "Името е задължително")]
+            [StringLength(30, ErrorMessage = "Името трявба да е с минимум 2 символа.", MinimumLength = 2)]
             [Display(Name = "Име")]
             public string Name { get; set; }
 
-            [MaxLength(30)]
-            [Required]
+            [Required(ErrorMessage = "Фамилията е задължителна")]
+            [StringLength(30, ErrorMessage = "Фамилията трявба да е с минимум 2 символа.", MinimumLength = 2)]
             [Display(Name = "Фамилия")]
             public string LastName { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "ЕГН-то е задължително")]
+            [StringLength(11, ErrorMessage = "Полето изисква минимум 10 символа.", MinimumLength = 10)]
             [Display(Name = "ЕГН")]
             public string EGN { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Телефонният номер е задължителен")]
+            [StringLength(11, ErrorMessage = "Полето изисква минимум 10 символа.", MinimumLength = 10)]
             [Display(Name = "Телефонен номер")]
             public string PhoneNumber { get; set; }
 
@@ -182,28 +184,5 @@ namespace Ciel.Areas.Identity.Pages.Account
             // If we got this far, something failed, redisplay form
             return Page();
         }
-
-        //private ApplicationUser CreateUser()
-        //{
-        //    try
-        //    {
-        //        return Activator.CreateInstance<ApplicationUser>();
-        //    }
-        //    catch
-        //    {
-        //        throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
-        //            $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-        //            $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
-        //    }
-        //}
-
-        //private IUserEmailStore<ApplicationUser> GetEmailStore()
-        //{
-        //    if (!_userManager.SupportsUserEmail)
-        //    {
-        //        throw new NotSupportedException("The default UI requires a user store with email support.");
-        //    }
-        //    return (IUserEmailStore<ApplicationUser>)_userStore;
-        //}
     }
 }
