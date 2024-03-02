@@ -123,7 +123,5 @@ namespace Ciel.Areas.Customer.Controllers
 
             return RedirectToAction("Index", "Carts", new { area = "Customer" });
         }
-
     }
-
 }

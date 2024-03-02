@@ -293,6 +293,42 @@ namespace Ciel.Migrations
                             Picture = "image8.jpg",
                             Price = 29.100000000000001,
                             ProductName = "L’biotica Repair Lash - серум за растеж на мигли"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CatalogId = 1,
+                            Description = "Околоочният серум The Ordinary Multi-Peptide Eye Serum се насочва към най-честите прояви на стареене или умора. В една стъпка ви помага да редуцирате бръчките, отоците, торбичките и тъмните кръгове под очите – успява да направи това благодарение на изключително високата концентрация на активни вещества, включващи цяла серия от патентовани пептидни технологии.",
+                            Picture = "image9.jpg",
+                            Price = 52.0,
+                            ProductName = "The Ordinary - озаряващ серум за околоочната зона"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CatalogId = 2,
+                            Description = "За вашият безупречен външен вид с доказан резултат ще се погрижи тази маска за вежди Make up Revolution Rehab. Тя не съдържа в себе си никакви животински съставки и може да се използва за устни и мигли със същия успех. ",
+                            Picture = "image10.jpg",
+                            Price = 12.199999999999999,
+                            ProductName = "Makeup Revolution - маска за вежди"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CatalogId = 3,
+                            Description = "Докато се отдавате на необезпокояван от нищо сън, изглаждащият серум Estée Lauder Pure Color Envy Nighttime Rescue Lip Oil-Serum ще се погрижи за устните ви. Изглажда фините линии и бръчките, успокоява устните и ги оставя здрави, меки и съвършено нежни.",
+                            Picture = "image11.jpg",
+                            Price = 58.100000000000001,
+                            ProductName = "Estée Lauder - изглаждащ серум за устни"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CatalogId = 4,
+                            Description = "Лекият нощен анти-ейдж крем Neutrogena Retinol Boost се абсорбира бързо след нанасяне и освобождава в повърхностните слоеве на кожата чист ретинол.",
+                            Picture = "image12.jpg",
+                            Price = 58.100000000000001,
+                            ProductName = "Neutrogena - нощен крем"
                         });
                 });
 
