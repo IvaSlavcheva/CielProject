@@ -1,48 +1,49 @@
 ﻿@using System.Globalization
-@model Dictionary<Product,int>
+@model Dictionary<Product, int>
 
 @{
     ViewData["Title"] = "Cart";
+    double totalCost = Model.Sum(item => item.Key.Price * item.Value);
 }
-@foreach (var item in Model.Keys)
-{
-    <div style="font-variant:small-caps; font-weight: 400;" class="col-md-4 col-xs-6 border-dark mb-3">
 
-        <div class="card mb-3" style="max-width: 540px;">
-            <div class="row g-0">
-                <div class="col-md-12">
-                    <div class="card-header text-white bg-dark">
-                        <div style="display: flex; justify-content: flex-end"><a asp-action="Delete" asp-route-productId="@item.Id"><i class="bi bi-x-lg"></i></a></div>
-                        <p class="card-text">
-                            <h5 class="card-title">
-                                @item.ProductName
-                            </h5>
-                        </p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            @foreach (var item in Model.Keys)
+            {
+                <div class="card mb-3" style="max-width: 400px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="~/images/@item.Picture" class="img-fluid rounded-start" alt="@item.ProductName">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">@item.ProductName</h5>
+                                <p class="card-text">
+                                    <strong>Цена:</strong> @String.Format(new CultureInfo("bg-BG"), "{0:C}", item.Price)
+                                </p>
+                                <p class="card-text">
+                                    <strong>Количество:</strong> @Model[item]
+                                </p>
+                              
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <img src="~/images/@item.Picture" width="100%" asp-append-version="true" alt="@item.ProductName">
+            }
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Крайна цена</h5>
+                    <p class="card-text">
+                        Общо: @String.Format(new CultureInfo("bg-BG"), "{0:C}", totalCost)
+                    </p>
                 </div>
-
-                <div style="font-variant:small-caps; font-weight: 400;" class="col-md-6">
-                    <div class="card-body">
-                      @*   <p class="card-text">@item.Description</p> *@
-                        <class ="align-middle">
-                            @String.Format(new CultureInfo("bg-BG"), "{0:C}", item.Price)
-                            <p class="card-text">@item.Catalog</p>
-                            <p>@Model[item]</p>
-                    </div>
-                </div>
-                <div style="font-variant:small-caps; font-weight: 400;" class="col-md-12">
-                    <div class="card-footer ">
-                        <p class="card-text">
-                            <a class="btn btn-outline-dark float-right" asp-controller="Products" asp-action="Details" asp-route-id="@item.Id">
-                                <i class="bi bi-eye-fill"></i> Покажи детайлите
-                            </a>
-                        </p>
-                    </div>
-                </div>
+            </div>
+            <div class="mt-4">
+                <a class="btn btn-dark" asp-controller="Products" asp-action="Index">Обратно към магазина</a>
             </div>
         </div>
     </div>
-}
+</div>

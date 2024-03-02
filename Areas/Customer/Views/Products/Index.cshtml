@@ -5,6 +5,7 @@
 @{
     ViewData["Title"] = "Index";
 }
+
 <style>
     table {
         border-collapse: collapse;
@@ -20,8 +21,7 @@
     img {
         border-radius: 50%;
     }
-</style>
-<style>
+
     .link-style {
         color: hotpink; /* Сменя цвета на текста на линка (черен) */
     }
@@ -30,105 +30,90 @@
         .link-style:active {
             color: deeppink; /* Сменя цвета на текста на линка при ховър и натискане (по-тъмно синьо) */
         }
-</style>
-<style>
-.custom-label {
-    color: black; /* Променя цвета на текста */
-    font-size: 20px; /* Променя размера на текста */
-    font-weight: bold; /* Променя дебелината/теглото на текста */
+
+    .custom-label {
+        color: black; /* Променя цвета на текста */
+        font-size: 20px; /* Променя размера на текста */
+        font-weight: bold; /* Променя дебелината/теглото на текста */
         font-family: Arial; /* Променя шрифта на текста */
-    /* Други стилове по ваш избор */
-	}
-    </style>
-<h1></h1>
+    }
+</style>
+
 <form id="searchForm" method="get">
     <center>
-    <p>
-        <label for="nameSearch" class="custom-label">Търси по име: </label>
-        <input type="text" id="nameSearch" name="nameSearch" value="@ViewData["NameSearch"]" style="width: 250px;" />
-        <button class="btn btn-dark bg-dark" type="submit">Търси</button>
-        <a class="btn btn-dark bg-dark" asp-action="Index">Изчисти</a>
-		</p>
-	</center>
+        <p>
+            <label for="nameSearch" class="custom-label">Търси по име: </label>
+            <input type="text" id="nameSearch" name="nameSearch" value="@ViewData["NameSearch"]" style="width: 250px;" />
+            <button class="btn btn-dark bg-dark" type="submit">Търси</button>
+            <a class="btn btn-dark bg-dark" asp-action="Index">Изчисти</a>
+        </p>
+    </center>
 </form>
 
 <div>
     <table>
         <tr>
             <th>
-				<img class="rounded-circle" src="~/images/eyezone.jpg" width="100" height="100" alt="Околоочна зона" class="rounded">
+                <img class="rounded-circle" src="~/images/eyezone.jpg" width="100" height="100" alt="Околоочна зона" class="rounded">
                 <a class="link-style" asp-action="SearchByCatalog" style="text-decoration:none" ; asp-route-catalogId="1"><p>Околоочна зона</p></a>
             </th>
             <th>
-				<img class="rounded-circle" src="~/images/lashes.jpg" width="100" height="100" alt="Вежди и мигли" class="rounded">
+                <img class="rounded-circle" src="~/images/lashes.jpg" width="100" height="100" alt="Вежди и мигли" class="rounded">
                 <a class="link-style" asp-action="SearchByCatalog" style="text-decoration:none" ; asp-route-catalogId="2"><p>Вежди и мигли</p></a>
             </th>
             <th>
-				<img class="rounded-circle" src="~/images/lips.jpg" width="100" height="100" alt="Устни" class="rounded">
+                <img class="rounded-circle" src="~/images/lips.jpg" width="100" height="100" alt="Устни" class="rounded">
                 <a class="link-style" asp-action="SearchByCatalog" style="text-decoration:none" ; asp-route-catalogId="3"><p>Устни</p></a>
             </th>
-			<th>
-				<img class="rounded-circle" src="~/images/face1.jpg" width="100" height="100" alt="Цялостна грижа" class="rounded">
+            <th>
+                <img class="rounded-circle" src="~/images/face1.jpg" width="100" height="100" alt="Цялостна грижа" class="rounded">
                 <a class="link-style" asp-action="SearchByCatalog" style="text-decoration:none" ; asp-route-catalogId="4"><p>Цялостна грижа</p></a>
             </th>
         </tr>
-    </table>  
+    </table>
 </div>
-<div class="row">
-    <div class="row">
-
-        @foreach (var item in Model)
-        {
-            <div class="col-md-3 col-xs-4 border-primary mb-3">
-                <div class="card mb-4" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-12">
-                            <div class="card-header text-white bg-dark">
-                                <p class="card-text">
-                                    <h5 class="card-title">
-                                        @item.ProductName
-                                    </h5>
-                                </p>
-                            </div>
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    @foreach (var item in Model)
+    {
+        <div class="col mb-4">
+            <div class="card h-100" style="max-width: 250px;max-height: 600px;">
+                <div class="card-header text-white bg-dark">
+                    <h5 class="card-title">@item.ProductName</h5>
+                </div>
+                <div class="card-body">
+                    <img src="~/images/@item.Picture" class="card-img-top" alt="@item.ProductName">
+                </div>
+                <div class="card-footer">
+					<div class="row">
+						<div class="row mt-2">
+							<div class="col">
+								<center><strong>Каталог: </strong>@item.Catalog.CatalogName</center>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+                                <center><strong>Цена: </strong>@String.Format(new CultureInfo("bg-BG"), "{0:C}", item.Price)</center>
+							</div>
+						</div>
+                        <div class="col">
+                            <a class="btn btn-outline-dark btn-sm" asp-action="Details" asp-route-id="@item.Id">
+                                <i class="bi bi-eye"></i> Покажи детайлите
+                            </a>
                         </div>
-                        <center>
-                            <div class="col-md-6 text-center">
-                                <img src="~/images/@item.Picture" width="100%" asp-append-version="true" alt="@item.ProductName">
-                            </div>
-                            <div class="col-md-">
-                                <div class="card-body">
-                                    @*  <p class="card-text">@item.Description.Substring(0, Math.Min(150, item.Description.Length))...</p> *@
-                                    <class ="align-middle">
-                                        <strong><p class="card-text">@item.Catalog.CatalogName</p></strong>
-                                        <strong>@String.Format(new CultureInfo("bg-BG"), "{0:C}", item.Price)</strong>
-                                </div>
-                            </div>
-                        </center>
-
-                        <div class="col-md-12">
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <p class="card-text">
-                                            <a class="btn btn-outline-dark float-right" asp-action="Details" asp-route-id="@item.Id">
-                                                <i class="bi bi-eye"></i><strong> Покажи детайлите</strong>
-                                            </a>
-                                        </p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p class="card-text">
-                                            <a class="btn btn-outline-dark float-right" asp-controller="Carts" asp-action="Create" asp-route-productId="@item.Id">
-                                                <i class="bi bi-cart-plus"></i>
-                                                <strong>Добави в кошницата</strong>
-                                            </a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col">
+                            <a class="btn btn-outline-dark btn-sm" asp-controller="Carts" asp-action="Create" asp-route-productId="@item.Id">
+                                <i class="bi bi-cart-plus"></i> Добави в кошницата
+                            </a>
                         </div>
-
                     </div>
+             
                 </div>
             </div>
+        </div>
+    }
+</div>
 
-        }
+
+
+
+
