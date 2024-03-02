@@ -30,22 +30,24 @@
 						<p class="card-text">@Model.Description</p>
                         <p class="card-text">@Model.Catalog.CatalogName</p>
 						<p>@String.Format(new CultureInfo("bg-BG"), "{0:C}", Model.Price)</p>
-                        <a class="btn btn btn-dark float-left" asp-controller="Carts" asp-action="Create" asp-route-productId="@Model.Id">
-                                Добави в кошницата
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="card-footer">
-                        <p class="card-text">
-                            
-                            <a class="btn btn-outline-dark float-right" asp-action="Index">
-                                Обратно към страницата
-                            </a>
-                        </p>
-                    </div>
 
+                        <div class="row">
+                            <div class="col-md-12 d-flex justify-content-end">
+                                <div class="mb-2">
+                                    <a class="btn btn-outline-dark mr-2" asp-controller="Carts" asp-action="Create" asp-route-productId="@Model.Id">
+                                        <i class="bi bi-cart-plus"></i>
+                                        <strong>Добави в кошницата</strong>
+                                    </a>
+                                    <a  class="btn btn-outline-dark" asp-action="Index">
+                                        <i class="bi bi-arrow-left-circle"></i>
+                                        <strong>Обратно към страницата</strong>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                </div>            
                 <h3>Ревю на @Model.ProductName</h3>
                 <form asp-controller="Products" asp-action="AddReview" method="post">
                     <input type="hidden" name="productId" value="@Model.Id" />
@@ -53,9 +55,9 @@
                         <label for="description">Напиши своето мнение за продукта:</label>
                         <textarea class="form-control" id="description" name="description"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-dark">Изпрати</button>
-                </form>
-
+                <button type="submit" class="btn btn-dark"><i class="bi bi-send"></i>Изпрати</button>
+					</form>
+				
                 <!-- Reviews section code -->
                 <h3>Всички ревюта:</h3>
                 @if (Model.Reviews != null && Model.Reviews.Any())
@@ -74,4 +76,5 @@
                     <p>Все още няма ревюта.</p>
                 }
                 </div>
-            </div>
+       </div>
+</div>
