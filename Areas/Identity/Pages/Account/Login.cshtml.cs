@@ -125,7 +125,7 @@ namespace Ciel.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Невалиден вход – неправилен имейл или парола.");
                     return Page();
                 }
             }

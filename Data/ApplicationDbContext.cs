@@ -148,8 +148,12 @@ namespace Ciel.Data
         public DbSet<Cart> Carts { get; set; }
 
         public DbSet<Cart_Product> Cart_Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderProduct> OrderProducts { get; set; }
+        public DbSet<Address> Addresses { get; set; }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Ciel.Models.Order> Order { get; set; } = default!;
 
     }
 }

@@ -13,9 +13,6 @@ namespace Ciel.Models
 
         public string UserId { get; set; }
 
-        [DataType(DataType.Date)]
-        public DateTime Shipping { get; set; }
-
         [ForeignKey("UserId")]
         public ApplicationUser User { get; set; }
 
