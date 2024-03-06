@@ -21,11 +21,11 @@
 </style>
 <style>
     .link-style {
-        color: hotpink; /* Сменя цвета на текста на линка (черен) */
+        color: hotpink;
     }
     .link-style:hover,
     .link-style:active {
-        color: deeppink; /* Сменя цвета на текста на линка при ховър и натискане (по-тъмно синьо) */
+        color: deeppink;
     }
 </style>
 <div>
@@ -46,6 +46,10 @@
             <th>
                 <img class="rounded-circle" src="~/images/face1.jpg" width="100" height="100" alt="Цялостна грижа" class="rounded">
                 <a class="link-style" asp-action="SearchByCatalog" style="text-decoration:none" ; asp-route-catalogId="4"><p>Цялостна грижа</p></a>
+            </th>
+            <th>
+                <img class="rounded-circle" src="~/images/all.jpg" width="100" height="100" alt="Цялостна грижа" class="rounded">
+                <a class="link-style" asp-action="Index" style="text-decoration:none"> <p>Към всички продукти</p></a>
             </th>
         </tr>
     </table>

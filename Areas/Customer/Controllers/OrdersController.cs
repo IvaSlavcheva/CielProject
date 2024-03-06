@@ -124,8 +124,6 @@ namespace Ciel.Areas.Customer.Controllers
 
             return RedirectToAction("Index", "Carts");
         }
-
-
         public IActionResult Details(int orderId)
         {
             Order? order = _context.Orders.Include(o => o.Address).Include(o => o.Products).FirstOrDefault(o => o.Id == orderId);
@@ -145,7 +143,6 @@ namespace Ciel.Areas.Customer.Controllers
             List<Product> products = new List<Product>();
             var test = new Dictionary<Product, int>();
 
-
             foreach (var id in ids)
             {
                 var current = _context.Products.FirstOrDefault(i => i.Id == id);
@@ -159,7 +156,6 @@ namespace Ciel.Areas.Customer.Controllers
                     test.Add(current, 1);
                 }
             }
-
             ViewData["Products"] = test;
 
             return View(order);

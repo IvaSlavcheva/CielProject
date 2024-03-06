@@ -20,10 +20,7 @@ namespace Ciel.Areas.Customer.Controllers
 
         public async Task<IActionResult> Index()
 		{
-			//return View();
-
 			return View(await _context.Catalogs.ToListAsync());
-
 		}
 		public IActionResult About()
         {

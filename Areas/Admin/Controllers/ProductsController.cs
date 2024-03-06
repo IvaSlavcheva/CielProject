@@ -22,18 +22,9 @@ namespace Ciel.Areas.Admin.Controllers
             _context = context;
             this.webHostEnvironment = webHostEnvironment;
         }
-
-        // GET: Products
-        //public async Task<IActionResult> Index()
-        //{
-        //    var applicationDbContext = _context.Products.Include(p => p.Catalog);
-        //    return View(await applicationDbContext.ToListAsync());
-        //}
         public async Task<IActionResult> Index(string nameSearch)
         {
             ViewData["NameSearch"] = nameSearch;
-
-            // Get all products with optional filtering by name
             IQueryable<Product> query = _context.Products
                 .Include(p => p.Catalog);
               
@@ -74,8 +65,6 @@ namespace Ciel.Areas.Admin.Controllers
         }
 
         // POST: Products/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductImage product)
@@ -151,8 +140,6 @@ namespace Ciel.Areas.Admin.Controllers
         }
 
         // POST: Products/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ProductImage product)
@@ -223,12 +210,10 @@ namespace Ciel.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         private bool ProductExists(int id)
         {
             return _context.Products.Any(e => e.Id == id);
         }
-
         public IFormFile GetImage(string path)
         {
             if (!System.IO.File.Exists(path))

@@ -1,4 +1,5 @@
-﻿@model Ciel.Models.Product
+﻿@using System.Globalization
+@model Ciel.Models.Product
 
 @{
     ViewData["Title"] = "Details";
@@ -32,7 +33,7 @@
             @Html.DisplayNameFor(model => model.Price)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
+            @String.Format(new CultureInfo("bg-BG"), "{0:C}", Model.Price)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Catalog)

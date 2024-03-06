@@ -5,7 +5,6 @@ namespace Ciel.Models
 {
     public class OrderProduct
     {
-        
             [Key]
             public int Id { get; set; }
             [Display(Name = "Продукт")]

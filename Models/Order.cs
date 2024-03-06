@@ -7,7 +7,6 @@ namespace Ciel.Models
 {
     public class Order
     {
- 
             [Key]
             public int Id { get; set; }
 
@@ -34,7 +33,6 @@ namespace Ciel.Models
 
             public DateTime ExceptedDeliveryDate = DateTime.Now.Date.AddDays(10);
             public List<OrderProduct> Products { get; set; } = new List<OrderProduct>();
-        
     }
 }
 

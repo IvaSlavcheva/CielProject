@@ -13,7 +13,6 @@ namespace Ciel.CreateRoles
         }
         public static void SeedUsers(UserManager<ApplicationUser> userManager)
         {
-            // проверява дали има потребител или не
             if (userManager.FindByNameAsync("Admin").Result == null)
             {
                 var user = new ApplicationUser
@@ -26,19 +25,16 @@ namespace Ciel.CreateRoles
                     EGN = "0505153457"
                 };
 
-                // потребител c парола "password"
                 var result = userManager.CreateAsync(user, "Admin123*").Result;
 
                 if (result.Succeeded)
                 {
-                    //WAIT сложи, за да е сигурно, че админът ще бъде създаден преди потребителят
                     userManager.AddToRoleAsync(user, "Admin").Wait();
                 }
             }
         }
         public static void SeedRoles(RoleManager<IdentityRole> roleManager)
         {
-            // ако ролята не съществува се създава
             if (!roleManager.RoleExistsAsync("Admin").Result)
             {
                 var role = new IdentityRole

@@ -9,16 +9,17 @@
 <h1></h1>
 
 <p>
-   @*  <a asp-action="Create">Създаване на продукт</a> *@
     <a class="btn btn-outline-primary" asp-action="Create" ><i class="bi bi-pencil-square"></i>Създаване на продукт</a> 
 </p>
 <form id="searchForm" method="get">
-    <p>
-        <label for="nameSearch">Търси по име: </label>
-        <input type="text" id="nameSearch" name="nameSearch" value="@ViewData["NameSearch"]" />
-        <button type="submit">Търси</button>
-        <button type="button" onclick="clearSearch('name')">Изчисти</button>
-    </p>
+    <center>
+        <p>
+            <label for="nameSearch" class="custom-label">Търси по име: </label>
+            <input type="text" id="nameSearch" name="nameSearch" value="@ViewData["NameSearch"]" style="width: 250px;" />
+            <button class="btn btn-dark bg-dark" type="submit">Търси</button>
+            <a class="btn btn-dark bg-dark" asp-action="Index">Изчисти</a>
+        </p>
+    </center>
 </form>
 <table class="table">
     <thead>
@@ -33,7 +34,7 @@
                 Снимка
             </th>
             <th>
-               Цена
+                Цена
             </th>
             <th>
                 Каталог

@@ -1,6 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
-#nullable disable
+﻿#nullable disable
 
 using System;
 using System.Collections.Generic;
@@ -48,30 +46,10 @@ namespace Ciel.Areas.Identity.Pages.Account
 
 
         }
-
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
-
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public string ReturnUrl { get; set; }
-
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
-
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public class InputModel
         {
             [MaxLength(30)]
@@ -115,8 +93,6 @@ namespace Ciel.Areas.Identity.Pages.Account
             [Display(Name = "Е-mail")]
             public string Email { get; set; }
         }
-
-
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
@@ -162,7 +138,6 @@ namespace Ciel.Areas.Identity.Pages.Account
                     var defautrole = _roleManager.FindByNameAsync("ApplicationUser").Result;
                     if (defautrole != null)
                     {
-                        // IdentityResult roleresult = await _userManager.AddToRolesAsync(user,defautrole.Name);
                         IdentityResult roleresult = await _userManager.AddToRoleAsync(user, defautrole.Name);
                     }
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
@@ -180,8 +155,6 @@ namespace Ciel.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-
-            // If we got this far, something failed, redisplay form
             return Page();
         }
     }

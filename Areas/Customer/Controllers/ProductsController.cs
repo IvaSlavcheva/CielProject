@@ -62,7 +62,7 @@ namespace Ciel.Areas.Customer.Controllers
 
             var product = await _context.Products
                 .Include(p => p.Catalog)
-                .Include(p => p.Reviews) // Include reviews
+                .Include(p => p.Reviews) 
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (product == null)
@@ -84,11 +84,8 @@ namespace Ciel.Areas.Customer.Controllers
             }
 
             var review = new Review(productId, description);
-
             _context.Reviews.Add(review);
             await _context.SaveChangesAsync();
-
-            // Redirect back to the product details page after adding the review
             return RedirectToAction("Details", new { id = productId });
         }
     }

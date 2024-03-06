@@ -15,8 +15,6 @@ namespace Ciel.Data
         {
             base.OnModelCreating(modelBuilder);
 
-
-
             modelBuilder.Entity<Catalog>()
                 .HasData(
                    new Catalog() { Id = 1, CatalogName = "Околоочна зона" },
@@ -138,7 +136,6 @@ namespace Ciel.Data
                 }
                 );
         }
-
         public DbSet<Product> Products { get; set; }
 
         public DbSet<Catalog> Catalogs { get; set; }

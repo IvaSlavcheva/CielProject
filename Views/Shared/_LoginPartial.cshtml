@@ -6,9 +6,13 @@
    
 @if (SignInManager.IsSignedIn(User))
 {
-        <li>
+        @if (User.IsInRole("Customer"))
+        {
+             <li>
             <a class="nav-link text-white" asp-area="Customer" asp-controller="Carts" asp-action="Index"><i class="bi bi-cart4"></i></a>
         </li>
+        }
+       
     <li class="nav-item">
         <a  class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Здравей, @User.Identity?.Name!</a>
     </li>
