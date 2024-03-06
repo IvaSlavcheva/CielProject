@@ -35,17 +35,22 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Price)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Catalog)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Catalog.Id)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Catalog.CatalogName)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
+
+    <form asp-action="Delete" id="deleteForm" onsubmit="return confirmDelete();">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Изтрий" class="btn btn-danger" /> 
+        <button type="submit" class="btn btn-danger">Изтрий</button>
         <a class="btn btn-outline-info" asp-action="Index">Назад</a>
     </form>
 </div>
+<script>
+    function confirmDelete() {
+        return confirm('Сигурни ли сте, че искате да изтриете продукта?');
+    }
+</script>
