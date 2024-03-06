@@ -133,8 +133,45 @@ namespace Ciel.Data
                       Picture = "image12.jpg",
                       Price = 58.10,
                       CatalogId = 4
-                }
-                );
+                },
+				new Product
+			    {
+					  Id = 13,
+					  ProductName = "Lancôme - серум за очи",
+					  Description = "Възвърнете младежкия вид на очите си. Опитайте възстановяващата сила на екстракта от рози Grand Rose, култовата съставка на марката Lancôme. Ревитализиращият очен серум Lancôme Absolue видимо изглажда, омекотява и стяга контурите на очите и гарантира по-сияйна околоочна зона без бръчки.",
+					  Picture = "image13.jpg",
+					  Price = 270,
+					  CatalogId = 1
+			    },		
+                new Product
+			    {
+					  Id = 14,
+					  ProductName = "Beauty Jar - подхранващо масло за вежди",
+					  Description = "Продуктът Beauty Jar Second Chance подчертава вашия поглед и изтъква красотата на очите ви.",
+					  Picture = "image14.png",
+					  Price = 10.90,
+					  CatalogId = 2
+			    },
+                new Product
+			    {
+					  Id = 15,
+					  ProductName = "Estée Lauder - възстановяващ балсам за устни",
+					  Description = "Завидна усмивка с меки и чувствени устни. Възобновяващият балсам за устни Estée Lauder Pure Color Envy Lip Repair Potion омекотява и изглажда устните, като същевременно дефинира външния им вид. Богат на масла, балсамът действа като регенерираща терапия през нощта и предава на устните страхотен вид. Благодарение на апликатора-пръчка, балсамът се нанася лесно и бързо, дори и в най-забързаните моменти.",
+					  Picture = "image15.jpg",
+					  Price = 69.50,
+					  CatalogId = 3
+			    },
+                new Product
+			    {
+					  Id = 16,
+					  ProductName = "Symbiosis London - маска за лице",
+					  Description = "Имате ли усещането, че в момента кожата на лицето ви не е в оптимална кондиция и ви трябва нещо повече, освен грижата, предлагана от крема? Маската за лице Symbiosis London Age Illuminating Cannabidiol обогатява чудесно ежедневната ви рутина – глези кожата и ѝ осигурява интензивна грижа, която носи незабавно подобряване на външния ѝ вид.",
+					  Picture = "image16.jpg",
+					  Price = 76.20,
+					  CatalogId = 4
+			    }
+				);   
+ 
         }
         public DbSet<Product> Products { get; set; }
 

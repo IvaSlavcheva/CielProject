@@ -8,13 +8,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Ciel.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCiel : Migration
+    public partial class InitialCielDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Address",
+                name: "Addresses",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -26,7 +26,7 @@ namespace Ciel.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Address", x => x.Id);
+                    table.PrimaryKey("PK_Addresses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -98,9 +98,9 @@ namespace Ciel.Migrations
                 {
                     table.PrimaryKey("PK_Order", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Order_Address_AddressId",
+                        name: "FK_Order_Addresses_AddressId",
                         column: x => x.AddressId,
-                        principalTable: "Address",
+                        principalTable: "Addresses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -281,7 +281,7 @@ namespace Ciel.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderProduct",
+                name: "OrderProducts",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -291,15 +291,15 @@ namespace Ciel.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderProduct", x => x.Id);
+                    table.PrimaryKey("PK_OrderProducts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderProduct_Order_OrderId",
+                        name: "FK_OrderProducts_Order_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Order",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderProduct_Products_ProductId",
+                        name: "FK_OrderProducts_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -353,7 +353,11 @@ namespace Ciel.Migrations
                     { 9, 1, "Околоочният серум The Ordinary Multi-Peptide Eye Serum се насочва към най-честите прояви на стареене или умора. В една стъпка ви помага да редуцирате бръчките, отоците, торбичките и тъмните кръгове под очите – успява да направи това благодарение на изключително високата концентрация на активни вещества, включващи цяла серия от патентовани пептидни технологии.", "image9.jpg", 52.0, "The Ordinary - озаряващ серум за околоочната зона" },
                     { 10, 2, "За вашият безупречен външен вид с доказан резултат ще се погрижи тази маска за вежди Make up Revolution Rehab. Тя не съдържа в себе си никакви животински съставки и може да се използва за устни и мигли със същия успех. ", "image10.jpg", 12.199999999999999, "Makeup Revolution - маска за вежди" },
                     { 11, 3, "Докато се отдавате на необезпокояван от нищо сън, изглаждащият серум Estée Lauder Pure Color Envy Nighttime Rescue Lip Oil-Serum ще се погрижи за устните ви. Изглажда фините линии и бръчките, успокоява устните и ги оставя здрави, меки и съвършено нежни.", "image11.jpg", 58.100000000000001, "Estée Lauder - изглаждащ серум за устни" },
-                    { 12, 4, "Лекият нощен анти-ейдж крем Neutrogena Retinol Boost се абсорбира бързо след нанасяне и освобождава в повърхностните слоеве на кожата чист ретинол.", "image12.jpg", 58.100000000000001, "Neutrogena - нощен крем" }
+                    { 12, 4, "Лекият нощен анти-ейдж крем Neutrogena Retinol Boost се абсорбира бързо след нанасяне и освобождава в повърхностните слоеве на кожата чист ретинол.", "image12.jpg", 58.100000000000001, "Neutrogena - нощен крем" },
+                    { 13, 1, "Възвърнете младежкия вид на очите си. Опитайте възстановяващата сила на екстракта от рози Grand Rose, култовата съставка на марката Lancôme. Ревитализиращият очен серум Lancôme Absolue видимо изглажда, омекотява и стяга контурите на очите и гарантира по-сияйна околоочна зона без бръчки.", "image13.jpg", 270.0, "Lancôme - серум за очи" },
+                    { 14, 2, "Продуктът Beauty Jar Second Chance подчертава вашия поглед и изтъква красотата на очите ви.", "image14.png", 10.9, "Beauty Jar - подхранващо масло за вежди" },
+                    { 15, 3, "Завидна усмивка с меки и чувствени устни. Възобновяващият балсам за устни Estée Lauder Pure Color Envy Lip Repair Potion омекотява и изглажда устните, като същевременно дефинира външния им вид. Богат на масла, балсамът действа като регенерираща терапия през нощта и предава на устните страхотен вид. Благодарение на апликатора-пръчка, балсамът се нанася лесно и бързо, дори и в най-забързаните моменти.", "image15.jpg", 69.5, "Estée Lauder - възстановяващ балсам за устни" },
+                    { 16, 4, "Имате ли усещането, че в момента кожата на лицето ви не е в оптимална кондиция и ви трябва нещо повече, освен грижата, предлагана от крема? Маската за лице Symbiosis London Age Illuminating Cannabidiol обогатява чудесно ежедневната ви рутина – глези кожата и ѝ осигурява интензивна грижа, която носи незабавно подобряване на външния ѝ вид.", "image16.jpg", 76.200000000000003, "Symbiosis London - маска за лице" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -416,13 +420,13 @@ namespace Ciel.Migrations
                 column: "AddressId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderProduct_OrderId",
-                table: "OrderProduct",
+                name: "IX_OrderProducts_OrderId",
+                table: "OrderProducts",
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderProduct_ProductId",
-                table: "OrderProduct",
+                name: "IX_OrderProducts_ProductId",
+                table: "OrderProducts",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
@@ -458,7 +462,7 @@ namespace Ciel.Migrations
                 name: "Cart_Products");
 
             migrationBuilder.DropTable(
-                name: "OrderProduct");
+                name: "OrderProducts");
 
             migrationBuilder.DropTable(
                 name: "Reviews");
@@ -479,7 +483,7 @@ namespace Ciel.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Address");
+                name: "Addresses");
 
             migrationBuilder.DropTable(
                 name: "Catalogs");
