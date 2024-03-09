@@ -20,7 +20,8 @@ namespace Ciel.Data
                    new Catalog() { Id = 1, CatalogName = "Околоочна зона" },
                    new Catalog() { Id = 2, CatalogName = "Вежди и мигли" },
                    new Catalog() { Id = 3, CatalogName = "Устни" },
-                   new Catalog() { Id = 4, CatalogName = "Цялостна грижа" }
+                   new Catalog() { Id = 4, CatalogName = "Цялостна грижа" },
+                   new Catalog() { Id = 5, CatalogName = "Аксесоари" }
                 );
 
             modelBuilder.Entity<Product>()
@@ -169,6 +170,24 @@ namespace Ciel.Data
 					  Picture = "image16.jpg",
 					  Price = 76.20,
 					  CatalogId = 4
+			    },
+                new Product
+			    {
+					  Id = 17,
+					  ProductName = "Масажор за лице",
+					  Description = "Масажорът е изработен от розов кварц от Южна Африка и разполага с бамбукова дръжка и две различни по големина ролки в двата си края. По-малката е подходяща за по-деликатните зони на лицето, а по-голямата е чудесна за масаж на по-големи зони от кожата.",
+					  Picture = "image17.jpg",
+					  Price = 27.90,
+					  CatalogId = 5
+			    },
+                new Product
+			    {
+					  Id = 18,
+					  ProductName = "Гъба за почистване на лице",
+					  Description = "Малка ексфолираща гъба, която в комбинация с любим измиващ продукт ще почисти ефективно кожата на лицето Ви. Изработена е с фина плетка, която осигурява ексфолиращия ефект и премахва мъртвите клетки, разкривайки по-меката и сияйна кожа на лицето.",
+					  Picture = "image18.jpg",
+					  Price = 9.80,
+					  CatalogId = 5
 			    }
 				);   
  

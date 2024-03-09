@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ciel.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240306182836_InitialCielDB")]
-    partial class InitialCielDB
+    [Migration("20240309101954_InitialDB")]
+    partial class InitialDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -215,6 +215,11 @@ namespace Ciel.Migrations
                         {
                             Id = 4,
                             CatalogName = "Цялостна грижа"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CatalogName = "Аксесоари"
                         });
                 });
 
@@ -442,6 +447,24 @@ namespace Ciel.Migrations
                             Picture = "image16.jpg",
                             Price = 76.200000000000003,
                             ProductName = "Symbiosis London - маска за лице"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CatalogId = 5,
+                            Description = "Масажорът е изработен от розов кварц от Южна Африка и разполага с бамбукова дръжка и две различни по големина ролки в двата си края. По-малката е подходяща за по-деликатните зони на лицето, а по-голямата е чудесна за масаж на по-големи зони от кожата.",
+                            Picture = "image17.jpg",
+                            Price = 27.899999999999999,
+                            ProductName = "Масажор за лице"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CatalogId = 5,
+                            Description = "Малка ексфолираща гъба, която в комбинация с любим измиващ продукт ще почисти ефективно кожата на лицето Ви. Изработена е с фина плетка, която осигурява ексфолиращия ефект и премахва мъртвите клетки, разкривайки по-меката и сияйна кожа на лицето.",
+                            Picture = "image18.jpg",
+                            Price = 9.8000000000000007,
+                            ProductName = "Гъба за почистване на лице"
                         });
                 });
 
