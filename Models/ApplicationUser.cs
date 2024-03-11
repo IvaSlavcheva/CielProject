@@ -16,6 +16,7 @@ namespace Ciel.Models
         [MaxLength(30)]
         [Display(Name = "Фамилия")]
         public string LastName { get; set; }
+
         [MaxLength(10)]
         [Required]
         [Display(Name = "ЕГН")]

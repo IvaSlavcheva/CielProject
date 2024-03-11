@@ -22,9 +22,9 @@ namespace Ciel.Models
             [Required]
             [DisplayName("Адрес")]
             public int AddressId { get; set; }
-
             [ForeignKey("AddressId")]
             public Address? Address { get; set; }
+
             [Required]
             public DateTime CreatedDate = DateTime.Now.Date;
 

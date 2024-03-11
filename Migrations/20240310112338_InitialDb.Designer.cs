@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ciel.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240309101954_InitialDB")]
-    partial class InitialDB
+    [Migration("20240310112338_InitialDb")]
+    partial class InitialDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

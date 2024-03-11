@@ -1,0 +1,211 @@
+﻿@model Ciel.Models.ApplicationUser
+
+@{
+
+    ViewData["Title"] = "Детайли-потребител";
+
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Детайли за потребител</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .details {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+            .details h1 {
+                color: #333;
+                font-size: 24px;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+
+            .details dl.row {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+            .details dt.col-sm-4 {
+                flex: 0 0 30%;
+                max-width: 30%;
+                color: #666;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            .details dd.col-sm-10 {
+                flex: 0 0 65%;
+                max-width: 65%;
+                color: #333;
+                margin-bottom: 10px;
+            }
+
+        .button-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+            .button-row button {
+                background-color: #dc3545;
+                color: #fff;
+                padding: 10px 20px;
+                border-radius: 5px;
+                border: none;
+                cursor: pointer;
+            }
+
+                .button-row button:hover {
+                    background-color: #c82333;
+                }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="details">
+
+            <h1>Детайли за потребител</h1>
+
+            <hr>
+
+            <dl class="row">
+
+                <dt class="col-sm-4">
+
+                    <p>Потребителски номер</p>
+
+                </dt>
+
+                <dd class="col-sm-10">
+
+                    @Html.DisplayFor(model => model.Id)
+
+                </dd>
+
+                <dt class="col-sm-4">
+
+                    <p>Име</p>
+
+                </dt>
+
+                <dd class="col-sm-10">
+
+                    @Html.DisplayFor(model => model.Name)
+
+                </dd>
+
+                <dt class="col-sm-4">
+
+                    <p>Фамилия</p>
+
+                </dt>
+
+                <dd class="col-sm-10">
+
+                    @Html.DisplayFor(model => model.LastName)
+
+                </dd>
+
+                <dt class="col-sm-4">
+
+                    <p>Имейл</p>
+
+                </dt>
+
+                <dd class="col-sm-10">
+
+                    @Html.DisplayFor(model => model.Email)
+
+                </dd>
+
+                <dt class="col-sm-4">
+
+                    <p>Потребителско име</p>
+
+                </dt>
+
+                <dd class="col-sm-10">
+
+                    @Html.DisplayFor(model => model.UserName)
+
+                </dd>
+
+                <dt class="col-sm-4">
+
+                    <p>Телефонен номер</p>
+
+                </dt>
+
+                <dd class="col-sm-10">
+
+                    @Html.DisplayFor(model => model.PhoneNumber)
+
+                </dd>
+
+                <dt class="col-sm-4">
+
+                    <p>ЕГН</p>
+
+                </dt>
+
+                <dd class="col-sm-10">
+
+                    @Html.DisplayFor(model => model.EGN)
+
+                </dd>
+
+            </dl>
+
+            <form id="deleteUserForm" asp-controller="ApplicationUser" asp-action="Delete">
+
+                <input type="hidden" value="@ViewData["userId"]" id="userId" name="id" />
+
+                <button type="submit" class="btn btn-danger">Изтрий</button>
+
+                <a type="button" asp-action="Index" class="btn btn-secondary" data-dismiss="modal">Откажи</a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+

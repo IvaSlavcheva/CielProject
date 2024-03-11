@@ -7,17 +7,17 @@ namespace Ciel.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Полето е задължително")]
         [DisplayName("Държава")]
         public string Country { get; set; }
-        [Required]
-        [DisplayName("Град")]
+		[Required(ErrorMessage = "Полето е задължително")]
+		[DisplayName("Град")]
         public string City { get; set; }
-        [Required]
-        [DisplayName("Пощенски код")]
+		[Required(ErrorMessage = "Полето е задължително")]
+		[DisplayName("Пощенски код")]
         public string ZipCode { get; set; }
-        [Required]
-        [DisplayName("Улица")]
+		[Required(ErrorMessage = "Полето е задължително")]
+		[DisplayName("Улица")]
         public string Street { get; set; }
     }
 }
