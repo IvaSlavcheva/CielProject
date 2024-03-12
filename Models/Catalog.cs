@@ -7,7 +7,9 @@ namespace Ciel.Models
     {
         [Key]
         public int Id { get; set; }
-        [DisplayName("Име")]
+
+		[Required(ErrorMessage = "Полето е задължително")]
+		[DisplayName("Име")]
         public string CatalogName { get; set; }
     }
 }

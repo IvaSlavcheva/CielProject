@@ -9,16 +9,21 @@ namespace Ciel.Models.NewModelView
 
         [Key]
         public int Id { get; set; }
-        [DisplayName("Име")]
+		[Required(ErrorMessage = "Полето е задължително")]
+		[DisplayName("Име")]
         public string ProductName { get; set; }
-        [DisplayName("Описание")]
+		[Required(ErrorMessage = "Полето е задължително")]
+		[DisplayName("Описание")]
         public string Description { get; set; }
-        [DisplayName("Снимка")]
+		[Required(ErrorMessage = "Полето е задължително")]
+		[DisplayName("Снимка")]
         [ValidateNever]
         public IFormFile? Picture { get; set; }
-        [DisplayName("Цена")]
+		[Required(ErrorMessage = "Полето е задължително")]
+		[DisplayName("Цена")]
         public double Price { get; set; }
-        [DisplayName("Каталог")]
+		[Required(ErrorMessage = "Полето е задължително")]
+		[DisplayName("Каталог")]
         public int CatalogId { get; set; }
 		[ValidateNever]
 		public Catalog Catalog { get; set; }

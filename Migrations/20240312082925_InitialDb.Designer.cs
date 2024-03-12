@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ciel.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240310112338_InitialDb")]
+    [Migration("20240312082925_InitialDb")]
     partial class InitialDb
     {
         /// <inheritdoc />
