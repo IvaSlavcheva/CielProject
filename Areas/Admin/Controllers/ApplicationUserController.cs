@@ -33,18 +33,13 @@ namespace Ciel.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-
-            // Филтрирайте потребителите и извадете текущия потребител от резултата
-
             var users = await _context.ApplicationUsers
 
                 .Where(u => u.Id != currentUser.Id)
-
                 .ToListAsync();
 
             return View(users);
         }
-
         // GET: Users/Details/5
         public async Task<IActionResult> Details(string? id)
         {
@@ -64,14 +59,11 @@ namespace Ciel.Areas.Admin.Controllers
             }
             return View(user);
         }
-
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(string id)
-
         {
-
             var user = await _context.ApplicationUsers.FindAsync(id);
 
             _context.ApplicationUsers.Remove(user);
@@ -79,8 +71,6 @@ namespace Ciel.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
-
         }
-
     }
 }

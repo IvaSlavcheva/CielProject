@@ -92,19 +92,19 @@ namespace Ciel.Areas.Admin.Controllers
             ViewData["CatalogId"] = new SelectList(_context.Catalogs, "Id", "CatalogName", product.CatalogId);
             return View(product);
         }
-        private string UploadeFile(ProductImage actor)
+        private string UploadeFile(ProductImage product)
         {
             string uniqueFileName = null;
-            if (actor.Picture != null)
+            if (product.Picture != null)
             {
                 string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "Images");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + actor.Picture.FileName;
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + product.Picture.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 Console.WriteLine(filePath);
 
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
-                    actor.Picture.CopyTo(fileStream);
+                    product.Picture.CopyTo(fileStream);
                 }
             }
             return uniqueFileName;
@@ -134,8 +134,6 @@ namespace Ciel.Areas.Admin.Controllers
                 CatalogId = product.CatalogId,
                 Picture = GetImage($"{webHostEnvironment.WebRootPath}/images/{product.Picture}"),
             };
-
-
             return View(productImage);
         }
 
@@ -228,7 +226,6 @@ namespace Ciel.Areas.Admin.Controllers
                     Headers = new HeaderDictionary(),
                     ContentType = "image/*"
                 };
-
                 return formFile;
             }
         }

@@ -28,7 +28,25 @@
         color: deeppink;
     }
 </style>
+<style>
+    .custom-label {
+        color: black;
+        font-size: 20px;
+        font-weight: bold;
+        font-family: Arial;
+    }
+</style>
 <div>
+    <form id="searchForm" method="get">
+        <center>
+            <p>
+                <label for="nameSearch" class="custom-label">Търси по име: </label>
+                <input type="text" id="nameSearch" name="nameSearch" value="@ViewData["NameSearch"]" style="width: 250px;" />
+                <button class="btn btn-dark bg-dark" type="submit">Търси</button>
+                <a class="btn btn-dark bg-dark" asp-action="Index">Изчисти</a>
+            </p>
+        </center>
+    </form>
     <table>
         <tr>
             <th>
