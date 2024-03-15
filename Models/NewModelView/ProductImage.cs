@@ -6,7 +6,6 @@ namespace Ciel.Models.NewModelView
 {
     public class ProductImage
     {
-
         [Key]
         public int Id { get; set; }
 		[Required(ErrorMessage = "Полето е задължително")]
