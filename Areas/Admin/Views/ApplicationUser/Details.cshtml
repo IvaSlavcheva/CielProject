@@ -91,6 +91,14 @@
     </style>
 
 </head>
+<script>
+    function confirmDelete() {
+        var result = confirm("Сигурни ли сте, че искате да изтриете този потребител?");
+        if (result) {
+            document.getElementById('deleteUserForm').submit();
+        }
+    }
+</script>
 
 <body>
 
@@ -194,7 +202,7 @@
 
                 <input type="hidden" value="@ViewData["userId"]" id="userId" name="id" />
 
-                <button type="submit" class="btn btn-danger">Изтрий</button>
+                <button type="button" class="btn btn-danger" onclick="confirmDelete()">Изтрий</button>
 
                 <a type="button" asp-action="Index" class="btn btn-secondary" data-dismiss="modal">Откажи</a>
 

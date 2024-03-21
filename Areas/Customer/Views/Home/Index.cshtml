@@ -17,12 +17,26 @@
 		<br />
 	</center>
 
-	<div style="margin-bottom: 100px;">
-	<center><a class="btn btn-dark" asp-area="Identity" asp-page="/Account/Register">
-        Присъедини се <img src="~/images/arrow.png" alt="send to register page button" width="25" />
+
+	@if (!SignInManager.IsSignedIn(User))
+	{
+			<center>
+				<a class="btn btn-dark" asp-area="Identity" asp-page="/Account/Register">
+					Присъедини се <img src="~/images/arrow.png" alt="send to register page button" width="25" />
+				</a>
+			</center>
+	
+	}
+	@if (SignInManager.IsSignedIn(User) && User.IsInRole("Customer"))
+	{
+		<center>
+		<p> Вие вече сте част от обществото на CIEL! Сега можете да се потопите в нашите онлайн предложения за лице.</p>
+
+		<a class="btn btn-dark" asp-area="Customer" asp-controller="Products" asp-action="Index" >
+			Нашите продукти
 		</a>
-	</center>
-	</div>
+		</center>
+	}
 </div>
 
 <script type="text/javascript">
