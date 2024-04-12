@@ -37,7 +37,7 @@ namespace Ciel.Areas.Identity.Pages.Account.Manage
             public string NewPassword { get; set; }
             [DataType(DataType.Password)]
             [Display(Name = "Confirm new password")]
-            [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+            [Compare("NewPassword", ErrorMessage = "Новата парола и паролата за потвърждение не съвпадат.")]
             public string ConfirmPassword { get; set; }
         }
         public async Task<IActionResult> OnGetAsync()

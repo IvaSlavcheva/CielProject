@@ -104,7 +104,7 @@ namespace Ciel.Areas.Identity.Pages.Account.Manage
                 return RedirectToPage();
             }
 
-            StatusMessage = "Your email is unchanged.";
+            StatusMessage = "Вашият имейл е непроменен.";
             return RedirectToPage();
         }
 

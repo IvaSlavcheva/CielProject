@@ -140,7 +140,7 @@ namespace Ciel.Areas.Admin.Controllers
         // POST: Products/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(ProductImage product)
+        public async Task<IActionResult> Edit(int id, ProductImage product)
         {
             if (ModelState.IsValid)
             {
@@ -173,10 +173,10 @@ namespace Ciel.Areas.Admin.Controllers
             }
             ViewData["CatalogId"] = new SelectList(_context.Catalogs, "Id", "CatalogName", product.CatalogId);
             return View(product);
-        }
 
-        // GET: Products/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        }
+            // GET: Products/Delete/5
+            public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
