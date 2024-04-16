@@ -83,6 +83,7 @@
                             <td>
 
                                 <a class="btn btn-outline-dark" asp-action="Details" asp-route-id="@item.Id">Детайли</a>
+                                <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@item.Id">Редактирай</a>
 
                             </td>
 
@@ -91,8 +92,13 @@
                 </tbody>
             </table>
         </div>
-        <a class="btn btn-outline-dark" asp-area="" asp-controller="Home" asp-action="Index" class="back-button">Назад</a>
+      
+        <center>
+            <a class="btn btn-outline-dark" asp-area="" asp-controller="Home" asp-action="Index" class="back-button"> <i class="bi bi-arrow-bar-left"></i> Назад</a>
+            <a class="btn btn-outline-dark" asp-action="Create" asp-controller="ApplicationUser"><i class="bi bi-person-plus"></i> Създай</a>
+        </center>
     </div>
+
 </body>
 </html>
 

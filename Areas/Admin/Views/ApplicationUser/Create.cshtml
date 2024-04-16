@@ -1,0 +1,51 @@
+﻿@model Ciel.Models.ApplicationUser
+@{
+    ViewData["Title"] = "Създаване на нов потребител";
+}
+<div class="text-center mb-4">
+    <h1 class="styled-header">Създай потребител</h1>
+</div>
+
+<form asp-action="Create" enctype="multipart/form-data" class="col-md-6 offset-md-3">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Name" class="font-weight-bold">Име</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName" class="font-weight-bold">Фамилия</label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="UserName" class="font-weight-bold">Потребителско Име</label>
+        <input asp-for="UserName" class="form-control" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="font-weight-bold">Имейл</label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PhoneNumber" class="font-weight-bold">Телефонен Номер</label>
+        <input asp-for="PhoneNumber" class="form-control" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EGN" class="font-weight-bold">ЕГН</label>
+        <input asp-for="EGN" class="form-control" />
+        <span asp-validation-for="EGN" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PasswordHash" class="font-weight-bold">Парола</label>
+        <input type="password" id="Password" name="Password" class="form-control" />
+        <span asp-validation-for="PasswordHash" class="text-danger"></span>
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-secondary"> <i class="bi bi-person-plus"></i> Добави</button>
+        <a asp-action="Index" class="btn btn-secondary ml-2"> <i class="bi bi-arrow-bar-left"></i> Назад</a>
+    </div>
+</form>
+<div style="height: 50px;"></div>

@@ -134,6 +134,7 @@ namespace Ciel.Areas.Admin.Controllers
                 CatalogId = product.CatalogId,
                 Picture = GetImage($"{webHostEnvironment.WebRootPath}/images/{product.Picture}"),
             };
+            ViewBag.ImagePath = "/images/" + product.Picture;
             return View(productImage);
         }
 
